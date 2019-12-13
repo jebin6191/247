@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'assets/vendor/css/bootstrap.min.css';
+@import 'assets/vendor/css/style.css';
+@import 'assets/vendor/css/responsive.css';
+@import 'assets/vendor/css/font-awesome.min.css';
