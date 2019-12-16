@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CarouselModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

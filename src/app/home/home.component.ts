@@ -32,25 +32,25 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(document).ready(function() {
-      $('.featured-slider').owlCarousel({
-        dots: false,
-        lazyLoad:true,
-        items: 1,
-        autoplay: true,
-        navigation: true,
-        navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
-      });
-    });
+    // $(document).ready(function() {
+    //   $('.featured-slider').owlCarousel({
+    //     dots: false,
+    //     lazyLoad:true,
+    //     items: 1,
+    //     autoplay: true,
+    //     navigation: true,
+    //     navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
+    //   });
+    // });
 
-    $('.more-news-slide').owlCarousel({
-      dots: false,
-      lazyLoad:true,
-      items: 1,
-      autoplay: true,
-      navigation: true,
-      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
-    });
+    // $('.more-news-slide').owlCarousel({
+    //   dots: false,
+    //   lazyLoad:true,
+    //   items: 1,
+    //   autoplay: true,
+    //   navigation: true,
+    //   navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
+    // });
    
 
     
