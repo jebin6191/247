@@ -4,3 +4,4 @@
 @import 'assets/vendor/css/style.css';
 @import 'assets/vendor/css/responsive.css';
 @import 'assets/vendor/css/font-awesome.min.css';
+@import "~owl.carousel/dist/assets/owl.carousel.min";

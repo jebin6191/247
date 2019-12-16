@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $: any;
+declare var $:any;
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ declare var $: any;
 export class HomeComponent implements OnInit {
 
  slidesStore : any = [
-   {
+  {
     id: 1,
     src: 'assets/vendor/images/news/lifestyle/health5.jpg',
     title:'Netcix cuts out the chill with an integrated personal trainer on running'
@@ -51,9 +51,6 @@ export class HomeComponent implements OnInit {
       navigation: true,
       navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
     });
-   
-
-    
   }
 
 }
