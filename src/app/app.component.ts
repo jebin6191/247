@@ -60,7 +60,8 @@ export class AppComponent implements OnInit {
                 }
               c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
           }
-          this.homeService.categoryList = this.categoryList
+          this.homeService.categoryList = this.categoryList;
+          console.log(JSON.stringify(this.categoryList));
         }
       });
   }

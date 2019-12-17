@@ -117,15 +117,15 @@
                   </li>
   
   
-                  <li  *ngFor="let category of categoryList;"   [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}" class="nav-item dropdown mega-dropdown">
+                  <li *ngFor="let category of categoryList;"  [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-item dropdown mega-dropdown">
                     <a href="category-style1.html" class="nav-link dropdown-toggle" data-toggle="dropdown"
-                         role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
-                    <div class="dropdown-menu mega-menu-content clearfix">
+                    role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
+                    <div  class="dropdown-menu mega-menu-content clearfix">
                       <div class="menu-tab">
                         <div class="row">
                           <ul class="nav nav-tabs flex-column col-2" data-toggle="tab-hover">
                             <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson;">
-                              <a class= "nav-link animated fadeIn active"  [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  href="#tab-A" data-toggle="tab" aria-selected="true">
+                              <a class= "nav-link animated fadeIn active"  [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  href="tab-{{category.CategoryId}}" data-toggle="tab" aria-selected="true">
                                 <span class="tab-head">
                                 <span class="tab-text-title">{{subcategory.SubCategoryName}}</span>					
                               </span>
@@ -134,57 +134,21 @@
                         </ul>
   
                         <div class="tab-content col-10">
-                            <div class="tab-pane fade show active" id="tab-A">
+                            <div class="tab-pane fade show active" id="tab-{{category.CategoryId}}">
                               <div class="row">
-                                <div class="col-md-3">                                  
+                                <div class="col-md-3" *ngFor="let subcategory of category.SubCategoryJson | slice:0:4">                                  
                                   <div class="post-block-style clearfix">
                                   <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health1.jpg" alt="" /></a>
+                                    <a href="/news-description?newsId={{subcategory.News[0].newsId}}"><img class="img-fluid" style="height: 150px;width: 210px;" src="{{imageUrl + subcategory.News[0].Newsthump}}" alt="" /></a>
                                   </div>
                                   <a class="post-cat" href="#">Health</a>
                                   <div class="post-content">
                                      <h2 class="post-title title-small">
-                                       <a href="#">That wearable on your wrist could soon track your…</a>
+                                       <a href="#">{{subcategory.News[0].NewsHeadLine}}</a>
                                      </h2>
                                    </div><!-- Post content end -->
                                 </div><!-- Post Block style end -->
                                 </div>
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health2.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Health</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Can't shed those Gym? The problem might be in your…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end --></div>
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health3.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Health</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Deleting fears from the brain means you might neve…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end --></div>
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health4.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Health</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Smart packs parking sensor tech and beeps when col…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end --></div>
                               </div>
                             </div><!-- Tab pane 1 end -->
                           </div>  <!-- Tab pane 2 end -->
