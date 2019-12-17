@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { catchError, debounceTime, map } from "rxjs/operators";
+import { environment } from './env';
 
 
-const API_URL = '';
+const API_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'

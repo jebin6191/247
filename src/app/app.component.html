@@ -6,27 +6,14 @@
           <div class="col-md-12">
             <h3 class="trending-title">Trending Now</h3>
             <div id="trending-slide" class="owl-carousel owl-theme trending-slide">
-              <div class="item">
+              <div *ngFor="let slidernews of homeService.sliderNewsList" class="item">
                  <div class="post-content">
                     <h2 class="post-title title-small">
-                       <a href="#">The best MacBook Pro alternatives in 2017 for Apple users</a>
+                       <a href="">{{slidernews.HeadLine}}</a>
                     </h2>
                  </div><!-- Post content end -->
               </div><!-- Item 1 end -->
-              <div class="item">
-                 <div class="post-content">
-                    <h2 class="post-title title-small">
-                       <a href="#">Soaring through Southern Patagonia with the Premium Byrd drone</a>
-                    </h2>
-                 </div><!-- Post content end -->
-              </div><!-- Item 2 end -->
-              <div class="item">
-                 <div class="post-content">
-                    <h2 class="post-title title-small">
-                       <a href="#">Super Tario Run isn’t groundbreaking, but it has Mintendo charm</a>
-                    </h2>
-                 </div><!-- Post content end -->
-              </div><!-- Item 3 end -->
+             
             </div><!-- Carousel end -->
           </div><!-- Col end -->
         </div><!--/ Row end -->
@@ -130,48 +117,26 @@
                   </li>
   
   
-                  <li class="nav-item dropdown mega-dropdown">
+                  <li  *ngFor="let category of categoryList;"   [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}" class="nav-item dropdown mega-dropdown">
                     <a href="category-style1.html" class="nav-link dropdown-toggle" data-toggle="dropdown"
-                         role="button" aria-haspopup="true" aria-expanded="false">Lifestyle <i class="fa fa-angle-down"></i></a>
+                         role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
                     <div class="dropdown-menu mega-menu-content clearfix">
                       <div class="menu-tab">
                         <div class="row">
                           <ul class="nav nav-tabs flex-column col-2" data-toggle="tab-hover">
-                            <li class="nav-item">
-                              <a class= "nav-link animated fadeIn active " href="#tab-A" data-toggle="tab" aria-selected="true">
+                            <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson;">
+                              <a class= "nav-link animated fadeIn active"  [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  href="#tab-A" data-toggle="tab" aria-selected="true">
                                 <span class="tab-head">
-                                <span class="tab-text-title">Health</span>					
+                                <span class="tab-text-title">{{subcategory.SubCategoryName}}</span>					
                               </span>
                               </a>
                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link animated fadeIn" href="#tab-B" data-toggle="tab"  aria-selected="false">
-                                <span class="tab-head">
-                                <span class="tab-text-title">Travel</span>					
-                              </span>
-                              </a>
-                          </li>
-                           <li class="nav-item">
-                              <a class="nav-link animated fadeIn" href="#tab-C" data-toggle="tab" aria-selected="false">
-                                <span class="tab-head">
-                                <span class="tab-text-title">Food</span>					
-                              </span>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link animated fadeIn" href="#tab-D" data-toggle="tab" aria-selected="false">
-                                <span class="tab-head">
-                                <span class="tab-text-title">Architecture</span>					
-                              </span>
-                              </a>
-                          </li>
                         </ul>
   
                         <div class="tab-content col-10">
                             <div class="tab-pane fade show active" id="tab-A">
                               <div class="row">
-                                <div class="col-md-3">
-                                  
+                                <div class="col-md-3">                                  
                                   <div class="post-block-style clearfix">
                                   <div class="post-thumb">
                                     <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health1.jpg" alt="" /></a>
@@ -222,266 +187,11 @@
                                 </div><!-- Post Block style end --></div>
                               </div>
                             </div><!-- Tab pane 1 end -->
-  
-                            <div class="tab-pane animated fadeIn" id="tab-B">
-                              <div class="row">
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel1.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Travel</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">That wearable on your wrist could soon track your…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel2.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Travel</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Can't shed those Gym? The problem might be in your…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel3.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Travel</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Deleting fears from the brain means you might neve…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                </div>
-                                  
-                              <div class="col-md-3">
-                                <div class="post-block-style clearfix">
-                              <div class="post-thumb">
-                                <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel4.jpg" alt="" /></a>
-                              </div>
-                              <a class="post-cat" href="#">Travel</a>
-                              <div class="post-content">
-                                 <h2 class="post-title title-small">
-                                   <a href="#">Smart packs parking sensor tech and beeps when col…</a>
-                                 </h2>
-                               </div><!-- Post content end -->
-                            </div><!-- Post Block style end -->
-                              </div>
-                                </div><!-- Row end -->
-                              </div><!-- tab B end -->
-                                <div class="tab-pane animated fadeIn" id="tab-C">
-                             <div class="row">
-                                 <div class="col-md-3">
-                                   <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/food1.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Food</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">That wearable on your wrist could soon track your…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                  
-                                  
-                                 </div>
-                                 <div class="col-md-3">
-                                   <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/food2.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Food</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Can't shed those Gym? The problem might be in your…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                 </div>
-                                 <div class="col-md-3">
-                                   <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/food3.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Food</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Deleting fears from the brain means you might neve…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                 </div>
-                                 <div class="col-md-3">
-                                   
-                                  <div class="post-block-style clearfix">
-                                  <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/food4.jpg" alt="" /></a>
-                                  </div>
-                                  <a class="post-cat" href="#">Food</a>
-                                  <div class="post-content">
-                                     <h2 class="post-title title-small">
-                                       <a href="#">Smart packs parking sensor tech and beeps when col…</a>
-                                     </h2>
-                                   </div><!-- Post content end -->
-                                </div><!-- Post Block style end -->
-                                 </div>
-                             </div> 		
-                            </div><!-- Tab pane 3 end -->
-  
-                            </div> <!-- Tab pane 2 end -->
+                          </div>  <!-- Tab pane 2 end -->
                         </div>
                       </div><!-- Menu tab end -->
                     </div><!-- Mega menu end -->
                   </li><!-- Tab menu end -->
-  
-                  <li>
-                    <a href="category-style2.html">Technology</a>
-                  </li>
-  
-                  <li class="dropdown nav-item mega-dropdown">
-                    <a href="#" class="nav-link dropdown-toggler" data-toggle="dropdown">Video <i class="fa fa-angle-down"></i></a>
-                    <div class="dropdown-menu mega-menu-content clearfix">
-                      <div class="mega-menu-content-inner">
-                        <div class="row">
-                            <div class="col-md-3">
-                              <div class="post-block-style clearfix">
-                              <div class="post-thumb">
-                                <img class="img-fluid" src="assets/vendor/images/news/video/video4.jpg" alt="" />
-                                <a class="popup" href="https://www.youtube.com/embed/XhveHKJWnOQ?autoplay=1&amp;loop=1">
-                                        <div class="video-icon">
-                                          <i class="fa fa-play"></i>
-                                       </div>
-                                    </a>
-                               </div><!-- Post thumb end -->
-                              <div class="post-content">
-                                 <h2 class="post-title title-small">
-                                   <a href="#">Netcix cuts out the chill with an integrated...</a>
-                                 </h2>
-                               </div><!-- Post content end -->
-                            </div><!-- Post Block style end -->
-                            </div><!-- Col 1 end -->
-  
-                            <div class="col-md-3">
-                              <div class="post-block-style clearfix">
-                              <div class="post-thumb">
-                                 <img class="img-fluid" src="assets/vendor/images/news/video/video3.jpg" alt="" />
-                                <a class="popup" href="https://www.youtube.com/embed/wJF5NXygL4k?autoplay=1&amp;loop=1">
-                                    <div class="video-icon">
-                                      <i class="fa fa-play"></i>
-                                   </div>
-                                </a>
-                              </div><!-- Post thumb end -->
-                              <div class="post-content">
-                                 <h2 class="post-title title-small">
-                                   <a href="#">Netcix cuts out the chill with an integrated...</a>
-                                 </h2>
-                               </div><!-- Post content end -->
-                            </div><!-- Post Block style end -->
-                            </div><!-- Col 2 end -->
-  
-                            <div class="col-md-3">
-                              <div class="post-block-style clearfix">
-                              <div class="post-thumb">
-                                 <img class="img-fluid" src="assets/vendor/images/news/video/video2.jpg" alt="" />
-                                <a class="popup" href="https://www.youtube.com/embed/DQNDcxRo-2M?autoplay=1&amp;loop=1">
-                                    <div class="video-icon">
-                                      <i class="fa fa-play"></i>
-                                   </div>
-                                </a>
-                              </div><!-- Post thumb end --> 
-                              <div class="post-content">
-                                 <h2 class="post-title title-small">
-                                   <a href="#">TG G6 will have dual 13-megapixel cameras...</a>
-                                 </h2>
-                               </div><!-- Post content end -->
-                            </div><!-- Post Block style end -->
-                            </div><!-- Col 3 end -->
-                            <div class="col-md-3">
-                              <div class="post-block-style clearfix">
-                              <div class="post-thumb">
-                                 <img class="img-fluid" src="assets/vendor/images/news/video/video1.jpg" alt="" />
-                                <a class="popup" href="https://www.youtube.com/embed/DQNDcxRo-2M?autoplay=1&amp;loop=1">
-                                    <div class="video-icon">
-                                      <i class="fa fa-play"></i>
-                                   </div>
-                                </a>
-                              </div><!-- Post thumb end -->
-                              <div class="post-content">
-                                 <h2 class="post-title title-small">
-                                   <a href="#">Netcix cuts out the chill with an integrated...</a>
-                                 </h2>
-                               </div><!-- Post content end -->
-                            </div><!-- Post Block style end -->
-                            </div><!-- Col 4 end -->
-                          </div><!-- Post block row end -->
-                      </div> 
-                      
-                    </div><!-- Mega menu content end -->
-                  </li><!-- Video menu end -->
-  
-                  <li>
-                    <a href="category-style4.html">Travel</a>
-                  </li>
-  
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li class="dropdown-submenu">
-                        <a href="#.">Category Layouts</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="category-style1.html">Category Style 1</a></li>
-                          <li><a href="category-style2.html">Category Style 2</a></li>
-                          <li><a href="category-style3.html">Category Style 3</a></li>
-                          <li><a href="category-style4.html">Category Style 4</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a href="#.">Post Formates</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="single-post1.html">Single Post 1</a></li>
-                          <li><a href="single-post2.html">Single Post 2</a></li>
-                          <li><a href="single-post3.html">Single Post 3</a></li>
-                          <li><a href="single-post4.html">Single Post 4</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a href="#.">Sidebar</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                          <li><a href="single-post1.html">Right Sidebar</a></li>
-                          <li><a href="no-sidebar.html">No Sidebar</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a href="#.">Shortcodes</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="typography.html">Typography</a></li>
-                          <li><a href="blockquote.html">Blockquotes</a></li>
-                          <li><a href="tabs.html">Tabs</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <a href="#.">Pages</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="author.html">Author</a></li>
-                          <li><a href="404.html">404</a></li>
-                          <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                      </li>
-                    </ul><!-- End dropdown -->
-                  </li><!-- Features menu end -->
                 </ul><!--/ Nav ul end -->
               </div><!--/ Collapse end -->
   

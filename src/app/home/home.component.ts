@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
+import { HomeService } from '../shared/home.service';
 
 @Component({
   selector: 'app-home',
@@ -29,17 +29,13 @@ export class HomeComponent implements OnInit {
     src: 'assets/vendor/images/news/tech/gadget4.jpg',
     title:'Netcix cuts out the chill with an integrated personal trainer on running'
   }] 
-  constructor() { }
+  constructor(public homeService:HomeService,) { }
 
   ngOnInit() {
-    $('.more-news-slide').owlCarousel({
-      dots: false,
-      lazyLoad:true,
-      items: 1,
-      autoplay: true,
-      navigation: true,
-      navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
-    });
+
   }
+
+
+  
 
 }
