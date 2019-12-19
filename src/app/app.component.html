@@ -117,19 +117,26 @@
                   </li>
   
   
-                  <li *ngFor="let category of categoryList;"  [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-item dropdown mega-dropdown">
-                    <a href="category-style1.html" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                  <li *ngFor="let category of categoryList;" class="nav-item dropdown mega-dropdown">
+                    <a href="category-style1.html"  [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle" data-toggle="dropdown"
                     role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
                     <div  class="dropdown-menu mega-menu-content clearfix">
                       <div class="menu-tab">
                         <div class="row">
                           <ul class="nav nav-tabs flex-column col-2" data-toggle="tab-hover">
-                            <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson;">
-                              <a class= "nav-link animated fadeIn active"  [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  href="tab-{{category.CategoryId}}" data-toggle="tab" aria-selected="true">
+                            
+                            <li class="nav-item" >
+                              <a class= "nav-link animated fadeIn active" href="tab" data-toggle="tab" aria-selected="true" >
                                 <span class="tab-head">
-                                <span class="tab-text-title">{{subcategory.SubCategoryName}}</span>					
-                              </span>
+                                    <span class="tab-text-title">All</span>					
+                                </span>
                               </a>
+                                <a class= "nav-link animated fadeIn"  *ngFor="let subcategory of category.SubCategoryJson;" [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}" 
+                                 href="#tab-{{category.CategoryId}}" data-toggle="tab" aria-selected="false">
+                                  <span class="tab-head">
+                                      <span class="tab-text-title">{{subcategory.SubCategoryName}}</span>					
+                                  </span>
+                                </a>
                             </li>
                         </ul>
   
@@ -177,8 +184,6 @@
     </div><!-- Menu wrapper end -->
     
     <div class="gap-40"></div>
-  
-    
   
   <router-outlet></router-outlet>
   
