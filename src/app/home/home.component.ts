@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     src: 'assets/vendor/images/news/tech/gadget4.jpg',
     title:'Netcix cuts out the chill with an integrated personal trainer on running'
   }] 
-  constructor(public homeService:HomeService,) { }
+  constructor(public homeService:HomeService) { }
 
   ngOnInit() {
 

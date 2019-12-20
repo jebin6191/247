@@ -55,13 +55,14 @@ export class AppComponent implements OnInit {
               }
                 for(var n of c.SubCategoryJson){
                   for(var news of n.News){
+                    news.SubCategoryName = n.SubCategoryName;
                     this.Temparr.push(news)
                   }
                 }
               c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
           }
           this.homeService.categoryList = this.categoryList;
-          console.log(JSON.stringify(this.categoryList));
+           //console.log("ddddddddddddddddddd"+JSON.stringify(this.categoryList));
         }
       });
   }
@@ -75,7 +76,6 @@ export class AppComponent implements OnInit {
             res.NewsHeadLine = res.HeadLine;
             res.UpdatedSrc = environment.imageUrl+res.Newsthump;
           }
-          console.log("Slider News"+JSON.stringify(result))
           this.homeService.sliderNewsList = result;   
         }
       });
