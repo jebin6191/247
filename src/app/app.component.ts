@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
     this.Allcategory();
     this.getSliderNews();
     this.getScrollNews();
+    this.getAdvertisement();
     
   }
 
@@ -63,6 +64,18 @@ export class AppComponent implements OnInit {
           }
           this.homeService.categoryList = this.categoryList;
            //console.log("ddddddddddddddddddd"+JSON.stringify(this.categoryList));
+        }
+      });
+  }
+
+  getAdvertisement() {
+    debugger;
+    this.homeService.GetAdvertisement().subscribe(
+      (result: any) => {
+        if (result) {
+          for(let i in result){
+            this.homeService.advertisementList = result;
+          }         
         }
       });
   }

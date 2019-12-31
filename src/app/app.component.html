@@ -74,12 +74,15 @@
                </a>
             </div>
           </div><!-- logo col end -->
-  
+
           <div class="col-md-9 col-sm-12 header-right">
             <div class="ad-banner float-right">
-              <a href="#"><img src="assets/vendor/images/banner-ads/ad-top-header.png" class="img-fluid" alt=""></a>
+              <div *ngFor="let add of homeService.advertisementList">
+                <a *ngIf="add.Name == 'one'" href="{{add.Link}}" target="_blank">
+                  <img  src="{{imageUrlPath + 'common/' + add.ImagePath}}" class="img-fluid" alt=""></a>
+              </div>
             </div>
-          </div><!-- header right end -->
+          </div>
         </div><!-- Row end -->
       </div><!-- Logo and banner area end -->
     </header><!--/ Header end -->

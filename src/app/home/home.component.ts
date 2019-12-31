@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HomeService } from '../shared/home.service';
+import { WINDOW } from '@ng-toolkit/universal';
+import { NavigationEnd, Router } from '@angular/router';
+import { environment } from '../shared/env';
 
 @Component({
   selector: 'app-home',
@@ -8,32 +11,43 @@ import { HomeService } from '../shared/home.service';
 })
 export class HomeComponent implements OnInit {
 
- slidesStore : any = [
-  {
-    id: 1,
-    src: 'assets/vendor/images/news/lifestyle/health5.jpg',
-    title:'Netcix cuts out the chill with an integrated personal trainer on running'
-  },
-  {
-    id: 2,
-    src: 'assets/vendor/images/news/tech/gadget2.jpg',
-    title:'Netcix cuts out the chill with an integrated personal trainer on running'
-  },
-  {
-    id: 3,
-    src: 'assets/vendor/images/news/lifestyle/travel5.jpg',
-    title:'Netcix cuts out the chill with an integrated personal trainer on running'
-  },
-  {
-    id: 4,
-    src: 'assets/vendor/images/news/tech/gadget4.jpg',
-    title:'Netcix cuts out the chill with an integrated personal trainer on running'
-  }] 
-  constructor(public homeService:HomeService) { }
+
+  private twitter: any;
+  imageUrlPath = environment.imageUrlPath;
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
+    this.initTwitterWidget(window);
+   }
 
   ngOnInit() {
 
   }
+
+
+    initTwitterWidget(window) {
+      this.twitter = this._Router.events.subscribe(val => {
+        if (val instanceof NavigationEnd) {
+          (<any>window).twttr = (function (d, s, id) {
+            let js: any, fjs = d.getElementsByTagName(s)[0],
+                t = (<any>window).twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f: any) {
+                t._e.push(f);
+            };
+
+            return t;
+          }(document, "script", "twitter-wjs"));
+
+          if ((<any>window).twttr.ready())
+            (<any>window).twttr.widgets.load();
+        }
+      });
+    }
 
 
   
