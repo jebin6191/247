@@ -16,10 +16,10 @@ const routes: Routes = [
         path:'home',
         loadChildren: './home/home.module#HomeModule'
       },   
-      // {
-      //   path: 'news-description',
-      //   loadChildren: './pages/news-description/news-description.module#NewsDescriptionModule'
-      // },
+      {
+        path: 'news-description',
+        loadChildren: './news-description/news-description.module#NewsDescriptionModule'
+      },
       // {
       //   path: 'news-category',
       //   loadChildren: './pages/news-category/news-category.module#NewsCategoryModule'

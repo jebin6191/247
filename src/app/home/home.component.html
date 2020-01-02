@@ -364,26 +364,26 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
 					<div class="more-news block color-default">
-						<h3 class="block-title"><span>More News</span></h3>
+						<h3 class="block-title"><span>Latest Articles</span></h3>
 							<div class="item">
-								<div *ngFor="let article of homeService.articles | slice:0:3">
+								<div *ngFor="let article of homeService.articles | slice:0:4">
 
 									<div class="post-block-style post-float-half clearfix">
 										<div class="post-thumb">
-											<a href="#">
-												<img class="img-fluid" src="assets/vendor/images/news/video/video1.jpg" alt="" />
+											<a href="/article-description?newsId={{article.newsId}}">
+												<img class="img-fluid" src="{{imageUrlPath+'article/'+article.Newsthump}}" alt="" />
 											</a>
 										</div>
 										<a class="post-cat" href="#">Video</a>
 										<div class="post-content">
 											 <h2 class="post-title">
-												 <a href="#">KJerry's will sell food cream that tastes like your favorite video</a>
+												 <a href="/article-description?newsId={{article.newsId}}">{{article.HeadLine}}</a>
 											 </h2>
 											 <div class="post-meta">
-												 <span class="post-author"><a href="#">John Doe</a></span>
-												 <span class="post-date">Mar 29, 2017</span>
+												 <span class="post-author"><a href="#">{{ article.CreatedName}}</a></span>
+												 <span class="post-date">{{article.Date | date:'fullDate'}}</span>
 											 </div>
-											 <p>Lumbersexual meh sustainable Thundercats meditation kogi. Tilde Pitchfork vegan, gentrify minim elit semiotics non messenger bag Austin which roasted ...</p>
+											<!-- <p >{{article.NewsContent | slice:0:40}}</p > -->
 										 </div><!-- Post content end -->
 									</div><!-- Post Block style 1 end -->
 	
