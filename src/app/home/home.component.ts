@@ -58,16 +58,20 @@ export class HomeComponent implements OnInit {
             console.log(result);
             result.forEach(element => {
               element.NewsHeadLine = element.HeadLine
-              element.NewsContent = (element.News).replace(/<[^>]*>/g, '');
+              element.NewsContent = this.html2text(element.News);
             });  
-            this.homeService.articles = result;              
+            this.homeService.articles = result;   
+            console.log("srttttt"+JSON.stringify(this.homeService.articles))           
           }
         });
     }
 
 
-    html2text(html) {    
-      return this.sanitize.bypassSecurityTrustHtml(html);
+    html2text(html) {   
+      
+      let d = document.createElement("div");
+      d.innerHTML = html;
+      return d.innerText.split("\n").join("");
   }
   
 

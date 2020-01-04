@@ -111,7 +111,7 @@
   
   
                   <li *ngFor="let category of categoryList;" class="nav-item dropdown mega-dropdown">
-                    <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle"
+                    <a (click)="MoveTop()" [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle"
                      data-toggle="dropdown"
                     role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
                     <div  class="dropdown-menu mega-menu-content clearfix">

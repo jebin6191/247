@@ -14,9 +14,10 @@ export class NewsCategoryComponent implements OnInit {
   newsCategoryId:any;
   newsCategoryList:any;
   imageUrl = environment.imageUrl;
-  subcategory = {
-    "News": []
-  };
+  SubCategoryList: any =[];
+
+  config: any;
+  collection = { count: 60, data: [] };
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private route: ActivatedRoute,private _Router:Router) { }
 
   ngOnInit() {
@@ -26,14 +27,22 @@ export class NewsCategoryComponent implements OnInit {
       window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
       if(this.newsCategoryId == 'national'){
-        this.NationalNews();
+        // this.NationalNews();
       }else{
         this.getNewsByCategory(this.newsCategoryId);   
       }     
     })
   }
+
+  PaginationConfig(){
+    this.config = {
+      itemsPerPage: 30,
+      currentPage: 1,
+      totalItems: this.SubCategoryList.count
+    };
+  }
+
   GotToDesc(data){  
-    console.log("test"+JSON.stringify(data));
     this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId, '_self');
   }
   getNewsByCategory(id) {
@@ -44,18 +53,35 @@ export class NewsCategoryComponent implements OnInit {
           for(let c of this.newsCategoryList){
             if(c.News){
               c.News = JSON.parse(c.News);
+            }
           }
-          }
-         console.log("getNewsByCategory 22 ==>>  " + JSON.stringify(this.newsCategoryList))  
+
+          this.SubCategoryList = this.newsCategoryList[0];
+          this.PaginationConfig();
         }
       });
+  
   }
 
-  NationalNews() {
-    this.homeService.GetNationalNews().subscribe((result: any) => {
-        if (result) {
-          this.subcategory.News = result;
-        }
-      });
+  pageChanged(event){
+    this.config.currentPage = event;
+    this.window.scrollTo(0,420);
+  }
+
+  OnSubCategoryListClick(subcategory){
+    for(let c of this.newsCategoryList){
+      if(subcategory.SubCategoryId == c.SubCategoryId){
+        this.SubCategoryList = c;
+      }
     }
+    this.PaginationConfig();
+  }
+
+  // NationalNews() {
+  //   this.homeService.GetNationalNews().subscribe((result: any) => {
+  //       if (result) {
+  //         this.subcategory.News = result;
+  //       }
+  //     });
+  //   }
   }

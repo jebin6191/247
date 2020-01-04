@@ -80,6 +80,10 @@ export class AppComponent implements OnInit {
       });
   }
 
+  MoveTop(){
+    this.window.scrollTo(0,420);
+  }
+
   getSliderNews() {
     debugger;
     this.homeService.GetSliderNews().subscribe(
