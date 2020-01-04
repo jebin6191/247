@@ -69,7 +69,7 @@
         <div class="row">
           <div class="col-md-3 col-sm-12">
             <div class="logo">
-               <a href="index.html">
+               <a href="/home">
                 <img src="assets/vendor/images/logos/logo.png" alt="">
                </a>
             </div>
@@ -102,11 +102,11 @@
 
 
                   <li class="active" >
-                    <a href="category-style2.html">Home</a>
+                    <a href="/home">Home</a>
                   </li>
   
                   <li>
-                    <a href="category-style2.html">National</a>
+                    <a href="#">National</a>
                   </li>
   
   
@@ -129,7 +129,7 @@
                               <a class= "nav-link animated fadeIn"  *ngFor="let subcategory of category.SubCategoryJson;"
                                href="#tab-{{subcategory.SubCategoryId}}" data-toggle="tab" >
                                 <span class="tab-head">
-                                    <span class="tab-text-title">{{subcategory.SubCategoryName}}</span>					
+                                    <span class="tab-text-title" [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}" >{{subcategory.SubCategoryName}}</span>					
                                 </span>
                               </a>
                             </li>
@@ -143,7 +143,7 @@
                                   <div class="post-thumb">
                                     <a href="/news-description?newsId={{subcategory.News[0].newsId}}"><img class="img-fluid" style="height: 150px;width: 210px;" src="{{imageUrl + subcategory.News[0].Newsthump}}" alt="" /></a>
                                   </div>
-                                  <a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
+                                  <a class="post-cat" [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}" >{{subcategory.SubCategoryName}}</a>
                                   <div class="post-content">
                                      <h2 class="post-title title-small">
                                        <a href="#">{{subcategory.News[0].NewsHeadLine}}</a>
@@ -162,7 +162,7 @@
                                   <div class="post-thumb">
                                     <a href="/news-description?newsId={{news.newsId}}"><img class="img-fluid" style="height: 150px;width: 210px;" src="{{imageUrl + news.Newsthump}}" alt="" /></a>
                                   </div>
-                                  <a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
+                                  <a class="post-cat" [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}" (click)=ClosePopup()>{{subcategory.SubCategoryName}}</a>
                                   <div class="post-content">
                                      <h2 class="post-title title-small">
                                        <a href="#">{{news.NewsHeadLine}}</a>

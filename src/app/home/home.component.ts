@@ -4,6 +4,7 @@ import { WINDOW } from '@ng-toolkit/universal';
 import { NavigationEnd, Router } from '@angular/router';
 import { environment } from '../shared/env';
 import { DomSanitizer } from '@angular/platform-browser';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-
+ 
   private twitter: any;
   imageUrlPath = environment.imageUrlPath;
-  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router,
-  private sanitize: DomSanitizer) {
-    this.initTwitterWidget(window);
-   }
+  SliderImages:any;
+  NationalNewsList:any = [];
+    constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router, private sanitize: DomSanitizer) {
+      this.initTwitterWidget(window);
+    }
 
-  ngOnInit() {
-    this.getArticles();
-  }
-
+    ngOnInit() {
+      this.getVideoNews();
+      this.getArticles();
+      this.NationalNews();
+    }
 
     initTwitterWidget(window) {
       this.twitter = this._Router.events.subscribe(val => {
@@ -55,24 +58,49 @@ export class HomeComponent implements OnInit {
       this.homeService.GetArticles().subscribe(
         (result: any) => {
           if (result) {
-            console.log(result);
             result.forEach(element => {
               element.NewsHeadLine = element.HeadLine
               element.NewsContent = this.html2text(element.News);
             });  
-            this.homeService.articles = result;   
-            console.log("srttttt"+JSON.stringify(this.homeService.articles))           
+            this.homeService.articles = result;         
+          }
+        });
+    }
+
+    getVideoNews() {
+      this.homeService.GetVideoNews().subscribe(
+        (result: any) => {
+          if (result) {
+            result.forEach((item,i) => {
+              var src = item.Link;
+              var src1 = src.split("embed/");
+              result[i]['videoId']=  src1[1]
+              result[i]['video'] = item.Link;
+              result[i]['title'] = (item.Title.length>50)? ((item.Title).slice(0, 50)+'...') : (item.Title) ;
+  
+              result[i]['thumbImage'] = "https://img.youtube.com/vi/"+src1[1]+"/0.jpg"; 
+            })
+            this.SliderImages = result;
+            // console.log(JSON.stringify(this.SliderImages));
           }
         });
     }
 
 
-    html2text(html) {   
-      
+    html2text(html) {        
       let d = document.createElement("div");
       d.innerHTML = html;
-      return d.innerText.split("\n").join("");
+      return d.innerText.split("\n").join("").trim();
   }
+
+  NationalNews() {
+    this.homeService.GetNationalNews().subscribe((result: any) => {
+        if (result) {
+          this.NationalNewsList = result;
+          console.log(JSON.stringify(this.NationalNewsList));
+        }
+      });
+    }
   
 
 }

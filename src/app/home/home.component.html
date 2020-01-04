@@ -4,13 +4,16 @@
 }
 </style>
 
-<section *ngIf="homeService.sliderNewsList" class="featured-post-area no-padding">
+
+	<section *ngIf="homeService.sliderNewsList" class="featured-post-area no-padding">
     <div class="container">
       <div class="row">
+
+
 		<div class="col-md-7 col-xs-12 pad-r">
 			<div class="post-overaly-style featured-post ">
 				<div class="post-thumb">
-					<a href="#"><img class="img-fluid" style="height: 460px;" [src]="homeService.sliderNewsList[0].UpdatedSrc"  alt="" /></a>
+					<a href="#"><img class="img-fluid" style="height: 465px;" [src]="homeService.sliderNewsList[0].UpdatedSrc"  alt="" /></a>
 				</div>
 				<div class="post-content">
 				<a class="post-cat" href="#">{{homeService.sliderNewsList[0].CategoryName}}</a>
@@ -27,7 +30,7 @@
             <div class="col-md-12">
               <div class="post-overaly-style contentTop hot-post-top clearfix">
                 <div class="post-thumb">
-                  <a href="#"><img class="img-fluid" [src]="homeService.sliderNewsList[1].UpdatedSrc" alt="" /></a>
+                  <a href="#"><img class="img-fluid" style="height: 280px;"  [src]="homeService.sliderNewsList[1].UpdatedSrc" alt="" /></a>
                 </div>
                 <div class="post-content">
                    <a class="post-cat" href="#">{{homeService.sliderNewsList[1].CategoryName}}</a>
@@ -42,7 +45,7 @@
             <div class="col-md-6 pad-r-small" >
               <div class="post-overaly-style contentTop hot-post-bottom clearfix">
                 <div class="post-thumb">
-                  <a href="#"><img class="img-fluid" [src]="homeService.sliderNewsList[2].UpdatedSrc"alt="" /></a>
+                  <a href="#"><img class="img-fluid" [src]="homeService.sliderNewsList[2].UpdatedSrc" alt="" /></a>
                 </div>
                 <div class="post-content">
                    <a class="post-cat" href="#">{{homeService.sliderNewsList[2].CategoryName}}</a>
@@ -73,10 +76,47 @@
   </section> <!-- Trending post end -->
 
 
+
+
   <section class="block-wrapper">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
+
+					<div class="latest-news block color-red">
+						<h3 class="block-title"><span>National</span></h3>
+
+						<div class="row"> 
+
+							<div *ngFor="let national of NationalNewsList | slice:0:6"  class="col-md-4">
+								<div class="post-block-style clearfix">
+									<div class="post-thumb">
+										<a  href="/news-description?newsId={{national.newsId}}">
+											<img class="img-fluid" style="height: 130px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{national.Newsthump}}" alt="">
+										</a>
+									</div>
+									<a class="post-cat" href="#">National</a>
+									<div class="post-content">
+										 <h2 class="post-title title-medium">
+											 <a href="/news-description?newsId={{national.newsId}}" >
+												{{national.NewsHeadLine | slice:0:100}} ...</a>
+										 </h2>
+										 <div class="post-meta">
+											 <span class="post-author"><a href="#">{{national.CreatedName}}</a></span>
+											 <span class="post-date">{{national.Date  | date: 'dd/MM/yyyy'}}</span>
+											 <!-- <span class="post-comment pull-right"><i class="fa fa-comments-o"></i>
+											<a href="#" class="comments-link"><span>03</span></a></span> -->
+										 </div>
+									 </div><!-- Post content end -->
+								</div><!-- Post Block style end -->
+							</div><!-- Col 1 end -->
+						</div><!--- Latest news end -->
+						</div>
+					
+						
+
+
+
 					<!--- Featured Tab startet -->
 					<div class="featured-tab color-blue" *ngFor="let category of homeService.categoryList"  style="margin-top: 25px;">
 						<h3 class="block-title"><span> {{category.CategoryName}} </span></h3>
@@ -113,9 +153,10 @@
 									 				<a  href="/news-description?newsId={{category.AllNews[0].newsId}}"> {{category.AllNews[0].NewsHeadLine}}</a>
 									 			</h2>
 									 			<div class="post-meta">
-									 				<span class="post-author"><a href="#">John Doe</a></span>
+									 				<span class="post-author"><a href="#">{{category.AllNews[0].CreatedName}}</a></span>
 									 				<span class="post-date">{{category.AllNews[0].Date | date: 'dd/MM/yyyy'}}</span>
-									 			</div>
+												 </div>
+												 <p >{{category.AllNews[0].NewsContent | slice:0:200}} ...</p >
 								 			</div><!-- Post content end -->
 										</div><!-- Post Block style end -->
 						      	</div><!-- Col end -->
@@ -123,11 +164,11 @@
 						      	<div class="col-lg-6 col-md-6">
 						      		<div class="list-post-block">
 											<ul class="list-post">
-												<li class="clearfix" *ngFor="let subcategory of category.AllNews | slice:1:4">
+												<li class="clearfix" *ngFor="let subcategory of category.AllNews | slice:1:5">
 													<div class="post-block-style post-float clearfix">
 														<div class="post-thumb">
 															<a href="/news-description?newsId={{subcategory.newsId}}">
-																<img class="img-fluid" src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.Newsthump}}" alt="" />
+																<img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.Newsthump}}" alt="" />
 															</a>
 														</div><!-- Post thumb end -->
 														<a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
@@ -136,8 +177,8 @@
 												 				<a  href="/news-description?newsId={{subcategory.newsId}}">{{subcategory.NewsHeadLine}}</a>
 												 			</h2>
 												 			<div class="post-meta">
-												 				<span class="post-date">{{subcategory.Date | date: 'dd/MM/yyyy'}}</span>
-												 			</div>
+																 <span class="post-date">{{subcategory.Date | date: 'dd/MM/yyyy'}}</span>																 
+															 </div>															
 											 			</div><!-- Post content end -->
 													</div><!-- Post block style end -->
 												</li><!-- Li 1 end -->
@@ -158,13 +199,13 @@
 												  <img class="img-fluid"  src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.News[0].Newsthump}}" alt="" />
 											  </a>
 										  </div>
-										  <a class="post-cat" href="#"></a>
+										  <a class="post-cat" href="#">{{subcategory.News[0].SubCategoryName}}</a>
 										  <div class="post-content">
 											   <h2 class="post-title">
 												   <a  href="/news-description?newsId={{subcategory.News[0].newsId}}"> {{subcategory.News[0].NewsHeadLine}}</a>
 											   </h2>
 											   <div class="post-meta">
-												   <span class="post-author"><a href="#">John Doe</a></span>
+												   <span class="post-author"><a href="#">{{subcategory.News[0].CreatedName}}</a></span>
 												   <span class="post-date">{{subcategory.News[0].Date | date: 'dd/MM/yyyy'}}</span>
 											   </div>
 										   </div><!-- Post content end -->
@@ -174,11 +215,11 @@
 								<div class="col-lg-6 col-md-6">
 									<div class="list-post-block">
 										  <ul class="list-post">
-											  <li class="clearfix"   *ngFor="let news of subcategory.News | slice:1:5">
+											  <li class="clearfix" *ngFor="let news of subcategory.News | slice:1:5">
 												  <div class="post-block-style post-float clearfix">
 													  <div class="post-thumb">
 														  <a  href="/news-description?newsId={{news.newsId}}">
-															  <img class="img-fluid" src="https://admin.onebharathnews.tv/CategoryFiles/{{news.Newsthump}}" alt="" />
+															  <img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{news.Newsthump}}" alt="" />
 														  </a>
 													  </div><!-- Post thumb end -->
 													  <a class="post-cat" href="#">{{news.SubCategoryName}}</a>
@@ -189,6 +230,7 @@
 														   <div class="post-meta">
 															   <span class="post-date">{{news.Date | date: 'dd/MM/yyyy'}}</span>
 														   </div>
+														  
 													   </div><!-- Post content end -->
 												  </div><!-- Post block style end -->
 											  </li><!-- Li 1 end -->
@@ -249,121 +291,29 @@
 			</div><!-- Row end -->
 		</div><!-- Container end -->
 		<div class="gap-40"></div>
-		<div class="gap-40"></div>
 	</section><!-- Ad content top end -->
 
-
-	<section class="block-wrapper video-block">
+	<section class="block-wrapper p-bottom-0">
 		<div class="container">
 			<div class="row">
-				<div class="video-tab clearfix">
-					<h2 class="video-tab-title">Watch Now</h2>
-					<div class="row">
-					<div class="col-lg-7 pad-r-0">
-						<div class="tab-content">
-							<div class="tab-pane active animated fadeIn" id="video1">
-								<div class="post-overaly-style clearfix">
-								   <div class="post-thumb">
-										<img class="img-fluid" src="assets/vendor/images/news/video/video4.jpg" alt="" />
-										<a class="popup" href="https://www.youtube.com/embed/XhveHKJWnOQ?autoplay=1&amp;loop=1">
-					                  <div class="video-icon">
-					                  	<i class="fa fa-play"></i>
-					               	</div>
-					            	</a>
-								   </div><!-- Post thumb end -->
-								   <div class="post-content">
-								      <a class="post-cat" href="#">Video</a>
-								      <h2 class="post-title">
-								         <a href="#">Is Running Good for You, Health Benefits of Morning Running</a>
-								      </h2>
-								   </div><!-- Post content end -->
-								</div><!-- Post Overaly Article end -->
-							</div><!--Tab pane 1 end-->
-
-							<div class="tab-pane animated fadeIn" id="video2">
-								<div class="post-overaly-style clearfix">
-								   <div class="post-thumb">
-								      <img class="img-fluid" src="assets/vendor/images/news/video/video3.jpg" alt="" />
-										<a class="popup" href="https://www.youtube.com/embed/wJF5NXygL4k?autoplay=1&amp;loop=1">
-					                  <div class="video-icon">
-					                  	<i class="fa fa-play"></i>
-					               	</div>
-					            	</a>
-								   </div><!-- Post thumb end -->
-								   <div class="post-content">
-								      <a class="post-cat" href="#">Video</a>
-								      <h2 class="post-title title-medium">
-								         <a href="#">Breeze through 17 locations in Europe in this breathtaking video</a>
-								      </h2>
-								   </div><!-- Post content end -->
-								</div><!-- Post Overaly Article 2 end -->
-							</div><!--Tab pane 2 end-->
-
-							<div class="tab-pane animated fadeIn" id="video3">
-								<div class="post-overaly-style clearfix">
-								   <div class="post-thumb">
-								      <img class="img-fluid" src="assets/vendor/images/news/video/video2.jpg" alt="" />
-										<a class="popup" href="https://www.youtube.com/embed/DQNDcxRo-2M?autoplay=1&amp;loop=1">
-					                  <div class="video-icon">
-					                  	<i class="fa fa-play"></i>
-					               	</div>
-					            	</a>
-								   </div><!-- Post thumb end -->
-								   <div class="post-content">
-								      <a class="post-cat" href="#">Video</a>
-								      <h2 class="post-title title-medium">
-								         <a href="#">TG G6 will have dual 13-megapixel cameras on the back</a>
-								      </h2>
-								   </div><!-- Post content end -->
-								</div><!-- Post Overaly Article 2 end -->
-							</div><!--Tab pane 2 end-->
-							
-
-						</div><!-- Tab content end -->
-					</div><!--Tab col end -->
-
-					<div class="col-lg-5 pad-l-0">
-						<ul class="nav nav-tabs">
-						  	<li class="nav-item active">
-						  		<a class="nav-link animated fadeIn" href="#video1" data-toggle="tab">
-						  			<div class="post-thumb">
-								        <img class="img-fluid" src="assets/vendor/images/news/video/video4.jpg" alt="" />
-								   </div><!-- Post thumb end -->
-						  			<h3>Is Running Good for You, Health Benefits of Morning Running</h3>
-						  		</a>
-						  	</li>
-						  	<li class="nav-item">
-							  	<a class="nav-link animated fadeIn" href="#video2" data-toggle="tab">
-							  		<div class="post-thumb">
-								      <img class="img-fluid" src="assets/vendor/images/news/video/video3.jpg" alt="" />
-								   </div><!-- Post thumb end -->
-						  			<h3>Breeze through 17 locations in Europe in this breathtaking video</h3>
-							  	</a>
-							</li>
-						 	<li class="nav-item">
-							  	<a class="nav-link animated fadeIn" href="#video3" data-toggle="tab">
-							  		<div class="post-thumb">
-								      <img class="img-fluid" src="assets/vendor/images/news/video/video2.jpg" alt="" />
-								   </div><!-- Post thumb end -->
-						  			<h3>TG G6 will have dual 13-megapixel cameras on the back</h3>
-							  	</a>
-							</li>
-						</ul>
-					</div><!--Tab nav col end -->
-
-					</div>
-				</div><!-- Video tab end -->
-
+				<div class="col-lg-12 col-md-12">
+					<div class="more-news block color-aqua">
+						<h3 class="block-title"><span>Watch Now</span></h3>
+							<div class="item">
+								<ng-image-slider [images]="SliderImages" [slideImage]="4" [infinite]="true" [imageSize]="imageSize"  #nav ></ng-image-slider>
+								
+							</div><!-- Item 1 end -->
+					</div><!--More news block end -->
+				</div><!-- Content Col end -->
 			</div><!-- Row end -->
 		</div><!-- Container end -->
-	</section><!-- Video block end -->
-
+	</section>
 
 	<section class="block-wrapper p-bottom-0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-12">
-					<div class="more-news block color-default">
+					<div class="more-news block color-violet">
 						<h3 class="block-title"><span>Latest Articles</span></h3>
 							<div class="item">
 								<div *ngFor="let article of homeService.articles | slice:0:4">
@@ -383,7 +333,7 @@
 												 <span class="post-author"><a href="#">{{ article.CreatedName}}</a></span>
 												 <span class="post-date">{{article.Date | date:'fullDate'}}</span>
 											 </div>
-											<!-- <p >{{article.NewsContent | slice:0:40}}</p > -->
+											<p >{{article.NewsContent | slice:0:300}} ...</p >
 										 </div><!-- Post content end -->
 									</div><!-- Post Block style 1 end -->
 	
@@ -529,16 +479,5 @@
 		</div><!-- Container end -->
 	</section><!-- 3rd block end -->
 
-	
-	<section class="ad-content-area text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<img class="img-fluid" src="assets/vendor/images/banner-ads/ad-content-two.png" alt="" />
-				</div><!-- Col end -->
-			</div><!-- Row end -->
-		</div><!-- Container end -->
-	</section><!-- Ad content two end -->
-
-
+	<div class="gap-30"></div>
 

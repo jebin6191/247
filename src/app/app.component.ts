@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
               }
                 for(var n of c.SubCategoryJson){
                   for(var news of n.News){
+                    news.NewsContent = this.html2text(news.DetailedNews);
                     news.SubCategoryName = n.SubCategoryName;
                     this.Temparr.push(news)
                   }
@@ -63,10 +64,17 @@ export class AppComponent implements OnInit {
               c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
           }
           this.homeService.categoryList = this.categoryList;
-           //console.log("ddddddddddddddddddd"+JSON.stringify(this.categoryList));
+           console.log(JSON.stringify(this.categoryList));
         }
       });
   }
+
+  
+  html2text(html) {        
+    let d = document.createElement("div");
+    d.innerHTML = html;
+    return d.innerText.split("\n").join("").trim();
+}
 
   getAdvertisement() {
     debugger;

@@ -1,3 +1,42 @@
-<p>
-  news-subcategory works!
-</p>
+
+<section class="block-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+
+        <div class="block category-listing color-orange">
+          <h3 class="block-title"><span>{{newsCategoryList[0].CategoryName}}</span></h3>
+
+          <div class="row">
+            <div class="col-md-4" *ngFor="let news of SubCategoryList.News | paginate: config">
+              <div class="post-block-style post-grid clearfix">
+                <div class="post-thumb">
+                  <a href="/news-description?newsId={{news.newsId}}"  (click)="GotToDesc(news)">
+                    <img class="img-fluid" src="{{imageUrl+news.Newsthump}}"  style="height: 225px;" alt="" />
+                  </a>
+                </div>
+                <a class="post-cat" >{{SubCategoryList.SubCategoryName}}</a>
+                <div class="post-content">
+                   <h2 class="post-title title-large">
+                     <a href="/news-description?newsId={{news.newsId}}" (click)="GotToDesc(news)"> {{ (news.NewsHeadLine.length>60)? (news.NewsHeadLine | slice:0:60)+'...':(news.NewsHeadLine) }}</a>
+                   </h2>
+                   <div class="post-meta">
+                     <span class="post-author"><a href="/news-description?newsId={{news.newsId}}"  (click)="GotToDesc(news)" >{{news.CreatedName}}</a></span>
+                     <span class="post-date">{{news.Date | date:'fullDate' }}</span>
+                     <!-- <span class="post-comment pull-right"><i class="fa fa-comments-o"></i>
+                    <a href="#" class="comments-link"><span>03</span></a></span> -->
+                   </div>
+                   <p >{{news.NewsContent | slice:0:250}} ...</p >
+                 </div><!-- Post content end -->
+              </div><!-- Post Block style end -->
+            </div><!-- Col 1 end -->
+          </div><!-- Row end -->
+        </div><!-- Block Lifestyle end -->
+
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+      </div><!-- Content Col end -->
+
+    </div><!-- Row end -->
+  </div><!-- Container end -->
+</section><!-- First block end -->

@@ -53,6 +53,9 @@ export class NewsCategoryComponent implements OnInit {
           for(let c of this.newsCategoryList){
             if(c.News){
               c.News = JSON.parse(c.News);
+              for(let n of c.News){
+                n.NewsContent = this.html2text(n.DetailedNews);
+              }
             }
           }
 
@@ -63,6 +66,13 @@ export class NewsCategoryComponent implements OnInit {
   
   }
 
+  html2text(html) {        
+    let d = document.createElement("div");
+    d.innerHTML = html;
+    return d.innerText.split("\n").join("").trim();
+}
+
+
   pageChanged(event){
     this.config.currentPage = event;
     this.window.scrollTo(0,420);
@@ -72,6 +82,7 @@ export class NewsCategoryComponent implements OnInit {
     for(let c of this.newsCategoryList){
       if(subcategory.SubCategoryId == c.SubCategoryId){
         this.SubCategoryList = c;
+        console.log("dddd"+JSON.stringify(this.SubCategoryList))
       }
     }
     this.PaginationConfig();
