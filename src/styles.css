@@ -5,3 +5,4 @@
 @import 'assets/vendor/css/responsive.css';
 @import 'assets/vendor/css/font-awesome.min.css';
 @import "~owl.carousel/dist/assets/owl.carousel.min";
+@import '~@ngx-share/button/styles/share-buttons.css';

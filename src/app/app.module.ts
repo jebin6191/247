@@ -10,7 +10,6 @@ import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { HomeService } from './shared/home.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgtUniversalModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule  
+    ReactiveFormsModule ,   
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]
