@@ -15,6 +15,8 @@ export class NewsCategoryComponent implements OnInit {
   newsCategoryList:any;
   imageUrl = environment.imageUrl;
   SubCategoryList: any =[];
+  HeaderName: any;
+  ResultArr:any = [];
 
   config: any;
   collection = { count: 60, data: [] };
@@ -26,19 +28,22 @@ export class NewsCategoryComponent implements OnInit {
     .subscribe(params => {
       window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
+      console.log("this.newsCategoryId"+this.newsCategoryId);
       if(this.newsCategoryId == 'national'){
-        // this.NationalNews();
+        this.HeaderName = "NATIONAL";
+         this.NationalNews();
       }else{
         this.getNewsByCategory(this.newsCategoryId);   
-      }     
+      }  
+      this.PaginationConfig();   
     })
   }
 
   PaginationConfig(){
     this.config = {
-      itemsPerPage: 30,
+      itemsPerPage: 32,
       currentPage: 1,
-      totalItems: this.SubCategoryList.count
+      totalItems: this.ResultArr.count
     };
   }
 
@@ -58,12 +63,11 @@ export class NewsCategoryComponent implements OnInit {
               }
             }
           }
-
           this.SubCategoryList = this.newsCategoryList[0];
-          this.PaginationConfig();
+          this.ResultArr = this.SubCategoryList.News;
+          this.HeaderName = this.newsCategoryList[0].CategoryName;
         }
-      });
-  
+      }); 
   }
 
   html2text(html) {        
@@ -72,27 +76,32 @@ export class NewsCategoryComponent implements OnInit {
     return d.innerText.split("\n").join("").trim();
 }
 
-
   pageChanged(event){
     this.config.currentPage = event;
     this.window.scrollTo(0,420);
   }
 
   OnSubCategoryListClick(subcategory){
+    console.log(JSON.stringify(subcategory))
     for(let c of this.newsCategoryList){
       if(subcategory.SubCategoryId == c.SubCategoryId){
-        this.SubCategoryList = c;
-        console.log("dddd"+JSON.stringify(this.SubCategoryList))
+        this.ResultArr = c.News;
+        // console.log("dddd"+JSON.stringify(this.SubCategoryList))
       }
     }
     this.PaginationConfig();
   }
 
-  // NationalNews() {
-  //   this.homeService.GetNationalNews().subscribe((result: any) => {
-  //       if (result) {
-  //         this.subcategory.News = result;
-  //       }
-  //     });
-  //   }
+  NationalNews() {
+    this.homeService.GetNationalNews().subscribe((result: any) => {
+        if (result) {
+          console.log("dddd"+JSON.stringify(result))
+          for(let n of result){
+            n.NewsContent = this.html2text(n.DetailedNews);
+          }
+          this.ResultArr = result;
+          // this.subcategory.News = result;
+        }
+      });
+    }
   }

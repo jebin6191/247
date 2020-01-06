@@ -37,7 +37,28 @@ export class AppComponent implements OnInit {
     this.getSliderNews();
     this.getScrollNews();
     this.getAdvertisement();
+    this.getVideoNews();
     
+  }
+
+  getVideoNews() {
+    this.homeService.GetVideoNews().subscribe(
+      (result: any) => {
+        if (result) {
+          result.forEach((item,i) => {
+            var src = item.Link;
+            var src1 = src.split("embed/");
+            result[i]['videoId']=  src1[1]
+            result[i]['video'] = item.Link;
+            result[i]['title'] = (item.Title.length>50)? ((item.Title).slice(0, 50)+'...') : (item.Title) ;
+
+            result[i]['thumbImage'] = "https://img.youtube.com/vi/"+src1[1]+"/0.jpg"; 
+          })
+          // this.SliderImages = result;
+          this.homeService.videoNews = result;
+          // console.log(JSON.stringify(this.SliderImages));
+        }
+      });
   }
 
   Allcategory() {
@@ -64,7 +85,6 @@ export class AppComponent implements OnInit {
               c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
           }
           this.homeService.categoryList = this.categoryList;
-           console.log(JSON.stringify(this.categoryList));
         }
       });
   }

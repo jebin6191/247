@@ -13,7 +13,8 @@ export class NewsSubcategoryComponent implements OnInit {
 
   subcategoryId:any;
   subCategoryList:any;
-  imageUrl = environment.imageUrl
+  imageUrl = environment.imageUrl;
+  config:any;
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private route: ActivatedRoute,private _Router:Router) { }
 
 
@@ -26,6 +27,26 @@ export class NewsSubcategoryComponent implements OnInit {
     })
   }
 
+  
+  PaginationConfig(){
+    this.config = {
+      itemsPerPage: 30,
+      currentPage: 1,
+      totalItems: this.subCategoryList.count
+    };
+  }
+
+  pageChanged(event){
+    this.config.currentPage = event;
+    this.window.scrollTo(0,400);
+  }
+
+  html2text(html) {        
+    let d = document.createElement("div");
+    d.innerHTML = html;
+    return d.innerText.split("\n").join("").trim();
+  }
+
 
   getNewsBySubcategory(id) {
     this.homeService.GetNewsByCategory(id).subscribe(
@@ -35,9 +56,13 @@ export class NewsSubcategoryComponent implements OnInit {
           for(let c of this.subCategoryList){
             if(c.News){
               c.News = JSON.parse(c.News);
+              for(let n of c.News){
+                n.NewsContent = this.html2text(n.DetailedNews);
+              }
+            }
           }
-          }
-         console.log("getNewsBySubcategory 333 ==>>  " + JSON.stringify(this.subCategoryList))  
+          this.PaginationConfig();
+         console.log( JSON.stringify(this.subCategoryList))  
         }
       });
   }

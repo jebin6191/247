@@ -15,7 +15,7 @@ export class HomeService {
   public advertisementList:any;
   public sliderNewsList:any;
   public latestNewsList:any;
-  public videoNews:any;
+  public videoNews:any = [];
   public articles:any;
   public scrollNews:any;
   public selectedArticleNews:any;

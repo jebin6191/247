@@ -23,9 +23,8 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.getVideoNews();
-      this.getArticles();
       this.NationalNews();
+      this.getArticles();
     }
 
     initTwitterWidget(window) {
@@ -67,24 +66,7 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    getVideoNews() {
-      this.homeService.GetVideoNews().subscribe(
-        (result: any) => {
-          if (result) {
-            result.forEach((item,i) => {
-              var src = item.Link;
-              var src1 = src.split("embed/");
-              result[i]['videoId']=  src1[1]
-              result[i]['video'] = item.Link;
-              result[i]['title'] = (item.Title.length>50)? ((item.Title).slice(0, 50)+'...') : (item.Title) ;
-  
-              result[i]['thumbImage'] = "https://img.youtube.com/vi/"+src1[1]+"/0.jpg"; 
-            })
-            this.SliderImages = result;
-            // console.log(JSON.stringify(this.SliderImages));
-          }
-        });
-    }
+
 
 
     html2text(html) {        

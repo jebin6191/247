@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HomeService } from '../shared/home.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { environment } from '../shared/env';
-import { SafePipe } from '../shared/safe.pipe';
 
 @Component({
   selector: 'app-news-description',

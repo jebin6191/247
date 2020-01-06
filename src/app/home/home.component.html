@@ -87,7 +87,6 @@
 						<h3 class="block-title"><span>National</span></h3>
 
 						<div class="row"> 
-
 							<div *ngFor="let national of NationalNewsList | slice:0:6"  class="col-md-4">
 								<div class="post-block-style clearfix">
 									<div class="post-thumb">
@@ -111,11 +110,8 @@
 								</div><!-- Post Block style end -->
 							</div><!-- Col 1 end -->
 						</div><!--- Latest news end -->
-						</div>
+					</div>
 					
-						
-
-
 
 					<!--- Featured Tab startet -->
 					<div class="featured-tab color-blue" *ngFor="let category of homeService.categoryList"  style="margin-top: 25px;">
@@ -163,33 +159,31 @@
 
 						      	<div class="col-lg-6 col-md-6">
 						      		<div class="list-post-block">
-											<ul class="list-post">
-												<li class="clearfix" *ngFor="let subcategory of category.AllNews | slice:1:5">
-													<div class="post-block-style post-float clearfix">
-														<div class="post-thumb">
-															<a href="/news-description?newsId={{subcategory.newsId}}">
-																<img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.Newsthump}}" alt="" />
-															</a>
-														</div><!-- Post thumb end -->
-														<a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
-														<div class="post-content">
-												 			<h2 class="post-title title-small">
-												 				<a  href="/news-description?newsId={{subcategory.newsId}}">{{subcategory.NewsHeadLine}}</a>
-												 			</h2>
-												 			<div class="post-meta">
-																 <span class="post-date">{{subcategory.Date | date: 'dd/MM/yyyy'}}</span>																 
-															 </div>															
-											 			</div><!-- Post content end -->
-													</div><!-- Post block style end -->
-												</li><!-- Li 1 end -->
-											</ul><!-- List post end -->
-										</div><!-- List post block end -->
+										<ul class="list-post">
+											<li class="clearfix" *ngFor="let subcategory of category.AllNews | slice:1:5">
+												<div class="post-block-style post-float clearfix">
+													<div class="post-thumb">
+														<a href="/news-description?newsId={{subcategory.newsId}}">
+															<img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.Newsthump}}" alt="" />
+														</a>
+													</div><!-- Post thumb end -->
+													<a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
+													<div class="post-content">
+														<h2 class="post-title title-small">
+															<a  href="/news-description?newsId={{subcategory.newsId}}">{{subcategory.NewsHeadLine}}</a>
+														</h2>
+														<div class="post-meta">
+																<span class="post-date">{{subcategory.Date | date: 'dd/MM/yyyy'}}</span>																 
+															</div>															
+													</div><!-- Post content end -->
+												</div><!-- Post block style end -->
+											</li><!-- Li 1 end -->
+										</ul><!-- List post end -->
+									</div><!-- List post block end -->
 						      	</div><!-- List post Col end -->
 					      	</div><!-- Tab pane Row 1 end -->
 						  </div><!-- Tab pane 1 end -->
 						  
-
-
 						  <div class="tab-pane animated fadeInRight"  *ngFor="let subcategory of category.SubCategoryJson" id="{{subcategory.SubCategoryId}}">
 							<div class="row">
 								<div class="col-lg-6 col-md-6"  *ngFor="let news of subcategory.News| slice:0:1; let i = index">
@@ -297,10 +291,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
-					<div class="more-news block color-aqua">
+					<div class="featured-tab color-aqua">
 						<h3 class="block-title"><span>Watch Now</span></h3>
+						<ul class="nav nav-tabs">
+							<li class="nav-item">
+								<a class="nav-link animated active color-aqua" href="/news-video">
+									<span class="tab-head">
+									  <span class="tab-text-title ">View All</span>					
+								  </span>
+								</a>
+							</li>
+						</ul>
 							<div class="item">
-								<ng-image-slider [images]="SliderImages" [slideImage]="4" [infinite]="true" [imageSize]="imageSize"  #nav ></ng-image-slider>
+								<ng-image-slider [images]="homeService.videoNews" [slideImage]="4" [infinite]="true" [imageSize]="imageSize"  #nav ></ng-image-slider>
 								
 							</div><!-- Item 1 end -->
 					</div><!--More news block end -->
@@ -324,7 +327,7 @@
 												<img class="img-fluid" src="{{imageUrlPath+'article/'+article.Newsthump}}" alt="" />
 											</a>
 										</div>
-										<a class="post-cat" href="#">Video</a>
+										<a class="post-cat" href="#">Article</a>
 										<div class="post-content">
 											 <h2 class="post-title">
 												 <a href="/article-description?newsId={{article.newsId}}">{{article.HeadLine}}</a>
