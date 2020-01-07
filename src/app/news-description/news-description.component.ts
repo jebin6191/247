@@ -22,6 +22,7 @@ export class NewsDescriptionComponent implements OnInit {
   CommentType="news";
   CommentsList: any;
   CommentsForm: FormGroup;
+  RandomNews: any = [];
   
   constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, public homeService:HomeService,
   private formBuilder: FormBuilder) {
@@ -44,8 +45,8 @@ export class NewsDescriptionComponent implements OnInit {
       CommentBy:[''],
     });
     this.GetNews(this.newsId);
-    this.GetComments();
-    this.Allcategory();
+    //this.GetComments();
+   this.Allcategory();
   }
 
   initTwitterWidget(window) {
@@ -104,7 +105,6 @@ export class NewsDescriptionComponent implements OnInit {
     this.homeService.GetNews(id).subscribe(
       (result: any) => {
         if (result) {
-          console.log("restultt===>>  "+JSON.stringify(result))
           this.newsDetails = result;
           if(this.newsDetails.length > 0) {
             this.DetailedNews = this.newsDetails[0].News;
@@ -114,9 +114,37 @@ export class NewsDescriptionComponent implements OnInit {
     }
 
     Allcategory() {
+      var arr = [];
+      var temp = [];
+      this.RandomNews = [];
       this.homeService.Allcategory().subscribe((result: any) => {
-            this.categoryList = result;
+            arr = result;
+
+            for(let c of arr){
+              c.SubCategoryJson = JSON.parse(c.SubCategoryJson)
+              for(let s of c.SubCategoryJson) {  
+                var SubCatName = s.SubCategoryName   
+                var SubCatId = s.SubCategoryId           
+                for(let n of s.News){
+                  temp.push(n.newsId);
+                  n.CategoryName = c.CategoryName;
+                  n.SubCategoryName = SubCatName;
+                  n.SubCategoryId = SubCatId;
+                  n.ImageUrl = "https://admin.onebharathnews.tv/CategoryFiles/"+n.Newsthump
+                  this.categoryList.push(n)
+                }
+              }
+            }
+            for(var i=0; i<5; i++){
+              this.pickRandomNews();
+            }
+           console.log(JSON.stringify(this.RandomNews));
         });
     }
 
+    pickRandomNews(){
+      var obj_keys = Object.keys(this.categoryList);
+      var ran_key = obj_keys[Math.floor(Math.random() *obj_keys.length)];
+      this.RandomNews.push(this.categoryList[ran_key]);
+    }
 }

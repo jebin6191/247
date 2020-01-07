@@ -41,7 +41,7 @@ export class NewsCategoryComponent implements OnInit {
 
   PaginationConfig(){
     this.config = {
-      itemsPerPage: 32,
+      itemsPerPage: 36,
       currentPage: 1,
       totalItems: this.ResultArr.count
     };

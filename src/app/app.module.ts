@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { HomeService } from './shared/home.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TransferHttpCacheModule,
     HttpClientModule,
     NgtUniversalModule,
-    BrowserModule,
     FormsModule,
-    ReactiveFormsModule ,   
+    ReactiveFormsModule,  
+    BrowserAnimationsModule 
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]

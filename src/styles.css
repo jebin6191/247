@@ -5,4 +5,8 @@
 @import 'assets/vendor/css/responsive.css';
 @import 'assets/vendor/css/font-awesome.min.css';
 @import "~owl.carousel/dist/assets/owl.carousel.min";
-@import '~@ngx-share/button/styles/share-buttons.css';
+@import '~@ngx-share/button/themes/default/default-theme';
+
+@import '~@ngx-share/button/themes/modern/modern-dark-theme';
+/* @import '~@ngx-share/button/styles/share-buttons.css'; */
+/* @import '~@ngx-share/button/styles/themes/modern/modern-dark-theme.css'; */
