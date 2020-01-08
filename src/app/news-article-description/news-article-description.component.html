@@ -1,3 +1,189 @@
-<p>
-  news-article-description works!
-</p>
+<section class="block-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        
+        <div class="single-post">
+          
+          <div class="post-title-area">
+            <a class="post-cat" href="#">{{NewsArticle[0].nCategoryName}}</a>
+            <h2 class="post-title">
+               {{NewsArticle[0].HeadLine}}
+             </h2>
+             <div class="post-meta">
+              <span class="post-author">
+                By <a href="#">{{NewsArticle[0].CreatedName}}</a>
+              </span>
+              <span class="post-date"><i class="fa fa-clock-o"></i>{{NewsArticle[0].Date | date}}</span>
+              <!-- <span class="post-hits"><i class="fa fa-eye"></i> 21</span>
+              <span class="post-comment"><i class="fa fa-comments-o"></i>
+              <a href="#" class="comments-link"><span>01</span></a></span> -->
+            </div>
+          </div><!-- Post title end -->
+
+          <div class="post-content-area">
+            <div class="post-media post-featured-image">
+              <a class="gallery-popup"><img src="https://admin.onebharathnews.tv/article/{{NewsArticle[0].Newsthump}}" class="img-fluid" alt=""></a>
+            </div>
+            <div class="entry-content" [innerHTML]="DetailedNews | SafePipe">
+            </div><!-- Entery content end -->
+
+            <div class="share-items clearfix">
+
+                <share-buttons [theme]="'modern-dark'"
+                [include]="['facebook','twitter','whatsapp','email']"
+                [show]="4"
+                [showText]="true"
+                [title]="NewsArticle[0].HeadLine"
+                [description]="NewsArticle[0].HeadLine"
+                [autoSetMeta]="false"
+                ></share-buttons>
+              
+             </div><!-- Share items end -->
+          </div><!-- post-content end -->
+        </div><!-- Single post end -->
+
+        <div class="related-posts block">
+          <h3 class="block-title"><span>Related Posts</span></h3>
+
+          <owl-carousel-o [options]="customOptions">
+       
+              <ng-container *ngFor="let post of RelatedArticles">
+                <ng-template carouselSlide [id]="post.newsId">
+                  <img style="height: 150px;width: 210px;" [src]="post.ImageUrl" [alt]="post.alt" [title]="post.NewsHeadLine">
+                  <div class="caption" dir="ltr"><a href="/article-description?newsId={{post.newsId}}">{{post.NewsHeadLine | slice:0:50}} ...</a></div>
+                </ng-template>
+              </ng-container>      
+            </owl-carousel-o>
+
+        </div><!-- Related posts end -->
+
+        <!-- Post comment start -->
+        <div id="comments" class="comments-area block">
+          <h3 class="block-title"><span> Comments</span></h3>
+
+          <!-- <ul class="comments-list">
+            <li>
+              <div class="comment">
+                <img class="comment-avatar pull-left" alt="" src="images/news/user1.png">
+                <div class="comment-body">
+                  <div class="meta-data">
+                    <span class="comment-author">Michelle Aimber</span>
+                    <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
+                  </div>
+                  <div class="comment-content">
+                  <p>High Life tempor retro Truffaut. Tofu mixtape twee, assumenda quinoa flexitarian aesthetic artisan vinyl pug. Chambray et Carles Thundercats cardigan actually, magna bicycle rights.</p></div>
+                  <div class="text-left">
+                    <a class="comment-reply" href="#">Reply</a>
+                  </div>	
+                </div>
+              </div>
+
+              <ul class="comments-reply">
+                <li>
+                  <div class="comment">
+                    <img class="comment-avatar pull-left" alt="" src="images/news/user2.png">
+                    <div class="comment-body">
+                      <div class="meta-data">
+                        <span class="comment-author">Genelia Dusteen</span>
+                        <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
+                      </div>
+                      <div class="comment-content">
+                      <p>Farm-to-table selfies labore, leggings cupidatat sunt taxidermy umami fanny pack typewriter hoodie art party voluptate cardigan banjo.</p></div>
+                      <div class="text-left">
+                        <a class="comment-reply" href="#">Reply</a>
+                      </div>	
+                    </div>
+                  </div>
+                </li>
+              </ul>
+                <div class="comment last">
+                  <img class="comment-avatar pull-left" alt="" src="images/news/user1.png">
+                  <div class="comment-body">
+                    <div class="meta-data">
+                      <span class="comment-author">Michelle Aimber</span>
+                      <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
+                    </div>
+                    <div class="comment-content">
+                    <p>VHS Wes Anderson Banksy food truck vero. Farm-to-table selfies labore, leggings cupidatat sunt taxidermy umami fanny pack typewriter hoodie art party voluptate cardigan banjo.</p></div>
+                    <div class="text-left">
+                      <a class="comment-reply" href="#">Reply</a>
+                    </div>	
+                  </div>
+                </div>
+            </li>
+          </ul> -->
+        </div>
+
+        <div class="comments-form">
+          <h3 class="title-normal">Leave a comment</h3>
+
+          <form role="form">
+            <div class="row">
+              <div class="col-md-12">
+               
+                <div class="form-group">
+                  <textarea class="form-control required-field" id="message" placeholder="Your Comment" rows="50" required></textarea>
+                </div>
+              </div><!-- Col end -->
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input class="form-control" name="name" id="name" placeholder="Your Name" type="text" required>
+                </div>
+              </div><!-- Col end -->
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input class="form-control" name="email" id="email" placeholder="Your Email" type="email" required>
+                </div>
+              </div>
+
+            </div><!-- Form row end -->
+            <div class="clearfix">
+              <button class="comments-btn btn btn-primary" type="submit">Post Comment</button> 
+            </div>
+          </form><!-- Form end -->
+        </div><!-- Comments form end -->
+
+      </div><!-- Content Col end -->
+
+      <div class="col-lg-4 col-md-12">
+        <div class="sidebar sidebar-right">
+          <div class="widget">
+            <h3 class="block-title"><span>Follow Us</span></h3>
+              <div  style="height: 600px; overflow-y: scroll;"><a style="height: 500px; overflow-y: scroll;" class="twitter-timeline" href="https://twitter.com/onebharathnews?ref_src=twsrc%5Etfw">Tweets by onebharathnews</a> 
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+          </div>
+
+          <div class="widget color-default">
+            <div class="list-post-block clearfix">
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FOne-Bharath-News-389976705062474%2F&tabs=timeline&width=335&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                width="340" height="500" style="border:none;overflow:hidden" 
+                scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+
+          </div><!-- Popular news widget end -->
+
+          <div class="widget text-center">
+            <div *ngFor="let add of homeService.advertisementList">
+              <a *ngIf="add.Name == 'two'" href="{{add.Link}}" target="_blank"style="cursor: pointer;">
+                <img src="{{imageUrlPath + 'common/' + add.ImagePath}}" alt="IMG" style="max-height:650px;max-width: 300px;"/>
+              </a>
+            </div>
+          </div>
+
+          <div class="widget widget-tags">
+            <h3 class="block-title"><span>Tags</span></h3>
+              <ul class="unstyled clearfix">
+                  <li *ngFor="let tag of NewsArticle[0].HashTags">
+                    <a *ngIf="tag != ''" [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, Type:'news', StartDate: '', EndDate:'' }">{{tag}}</a>
+                  </li>
+              </ul>
+          </div>
+        </div><!-- Sidebar right end -->
+      </div><!-- Sidebar Col end -->
+    </div><!-- Row end -->
+  </div><!-- Container end -->
+</section><!-- First block end -->

@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -25,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgtUniversalModule,
     FormsModule,
     ReactiveFormsModule,  
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]

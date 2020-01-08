@@ -40,10 +40,10 @@ const routes: Routes = [
         path: 'article-description',
         loadChildren: './news-article-description/news-article-description.module#NewsArticleDescriptionModule'
       },
-      // {
-      //   path: 'search-results',
-      //   loadChildren: './pages/news-search-results/news-search-results.module#NewsSearchResultsModule'
-      // },
+      {
+        path: 'search-results',
+        loadChildren: './news-search-results/news-search-results.module#NewsSearchResultsModule'
+      },
       // {
       //   path: 'careers',
       //   loadChildren: './pages/careers/careers.module#CareersModule'

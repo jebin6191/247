@@ -28,7 +28,6 @@ export class NewsCategoryComponent implements OnInit {
     .subscribe(params => {
       window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
-      console.log("this.newsCategoryId"+this.newsCategoryId);
       if(this.newsCategoryId == 'national'){
         this.HeaderName = "NATIONAL";
          this.NationalNews();

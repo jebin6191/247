@@ -1,0 +1,42 @@
+<section class="block-wrapper">  
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-lg-12 col-md-12">
+        <div style="font-size: 25px;">Search Results for the keyword <span style="color:red"> "{{SearchTerm}}"</span></div>
+      <div class="gap-40"></div>
+        <div class="block category-listing color-orange">
+          <!-- <h3 class="block-title">Search Results for the keyword <span> {{SearchTerm}}</span></h3> -->
+          <div class="row">
+            <div class="col-md-3"  *ngFor="let sliderNews of NewsListBySearchTerm | paginate: config" >
+              <div class="post-block-style post-grid clearfix">
+                <div class="post-thumb">
+                  <a  href="/news-description?newsId={{sliderNews.newsId}}"  (click)="GotToDesc(news)">
+                    <img class="img-fluid" src="https://admin.onebharathnews.tv/CategoryFiles/{{sliderNews.Newsthump}}" style="height: 170px;" alt="" />
+                  </a>
+                </div>
+                <!-- <a class="post-cat" >{{subCategoryList[0].SubCategoryName}}</a> -->
+                <div class="post-content">
+                   <h2 class="post-title title-large">
+                     <a  href="/news-description?newsId={{sliderNews.newsId}}" (click)="GotToDesc(news)"> {{ (sliderNews.NewsHeadLine.length>60)? (sliderNews.NewsHeadLine | slice:0:60)+'...':(sliderNews.NewsHeadLine) }}</a>
+                   </h2>
+                   <div class="post-meta">
+                     <span class="post-author"><a href="/news-description?newsId={{sliderNews.newsId}}"  (click)="GotToDesc(news)" >{{sliderNews.CreatedName}}</a></span>
+                     <span class="post-date">{{sliderNews.Date | date:'fullDate' }}</span>
+                     <!-- <span class="post-comment pull-right"><i class="fa fa-comments-o"></i>
+                    <a href="#" class="comments-link"><span>03</span></a></span> -->
+                   </div>
+                   <p >{{sliderNews.NewsContent | slice:0:180}} ...</p >
+                 </div><!-- Post content end -->
+              </div><!-- Post Block style end -->
+            </div><!-- Col 1 end -->
+          </div><!-- Row end -->
+        </div><!-- Block Lifestyle end -->
+
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+      </div><!-- Content Col end -->
+
+    </div><!-- Row end -->
+  </div><!-- Container end -->
+</section><!-- First block end -->

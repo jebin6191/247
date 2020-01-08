@@ -66,9 +66,6 @@ export class HomeComponent implements OnInit {
         });
     }
 
-
-
-
     html2text(html) {        
       let d = document.createElement("div");
       d.innerHTML = html;
