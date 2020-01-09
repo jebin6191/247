@@ -10,6 +10,7 @@ import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { HomeService } from './shared/home.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,  
     BrowserAnimationsModule,
-    
+    CarouselModule 
   ],
   providers: [HomeService],
   bootstrap: [AppComponent]

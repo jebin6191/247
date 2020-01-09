@@ -19,7 +19,7 @@
                       <img class="img-fluid" src="{{imageUrl+news.Newsthump}}"  style="height: 170px;" alt="" />
                     </a>
                   </div>
-                  <!-- <a class="post-cat" >{{SubCategoryList.SubCategoryName}}</a> -->
+                  <a class="post-cat" >{{SubCategoryName}}</a>
                   <div class="post-content">
                     <h2 class="post-title title-large">
                       <a href="/news-description?newsId={{news.newsId}}" (click)="GotToDesc(news)"> {{ (news.NewsHeadLine.length>60)? (news.NewsHeadLine | slice:0:60)+'...':(news.NewsHeadLine) }}</a>

@@ -17,6 +17,7 @@ export class NewsCategoryComponent implements OnInit {
   SubCategoryList: any =[];
   HeaderName: any;
   ResultArr:any = [];
+  SubCategoryName: any;
 
   config: any;
   collection = { count: 60, data: [] };
@@ -30,6 +31,7 @@ export class NewsCategoryComponent implements OnInit {
       this.newsCategoryId = params.categoryId;
       if(this.newsCategoryId == 'national'){
         this.HeaderName = "NATIONAL";
+        this.SubCategoryName = "National"
          this.NationalNews();
       }else{
         this.getNewsByCategory(this.newsCategoryId);   
@@ -63,8 +65,10 @@ export class NewsCategoryComponent implements OnInit {
             }
           }
           this.SubCategoryList = this.newsCategoryList[0];
+          // console.log("this.SubCategoryList"+JSON.stringify(this.SubCategoryList))
           this.ResultArr = this.SubCategoryList.News;
           this.HeaderName = this.newsCategoryList[0].CategoryName;
+          this.SubCategoryName = this.SubCategoryList.SubCategoryName;
         }
       }); 
   }
@@ -81,11 +85,11 @@ export class NewsCategoryComponent implements OnInit {
   }
 
   OnSubCategoryListClick(subcategory){
-    console.log(JSON.stringify(subcategory))
+    // console.log(JSON.stringify(subcategory))
     for(let c of this.newsCategoryList){
       if(subcategory.SubCategoryId == c.SubCategoryId){
         this.ResultArr = c.News;
-        // console.log("dddd"+JSON.stringify(this.SubCategoryList))
+        this.SubCategoryName = c.SubCategoryName; 
       }
     }
     this.PaginationConfig();
@@ -94,7 +98,7 @@ export class NewsCategoryComponent implements OnInit {
   NationalNews() {
     this.homeService.GetNationalNews().subscribe((result: any) => {
         if (result) {
-          console.log("dddd"+JSON.stringify(result))
+          // console.log("dddd"+JSON.stringify(result))
           for(let n of result){
             n.NewsContent = this.html2text(n.DetailedNews);
           }

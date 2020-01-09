@@ -4,6 +4,8 @@ import { HomeService } from './shared/home.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { environment } from './shared/env';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -27,9 +29,10 @@ export class AppComponent implements OnInit {
   events: string[] = [];
   selected: any = '';
   searchString ="";
+  Today;any;
   
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private router: Router, private formBuilder: FormBuilder) {
-    
+
   }
 
   ngOnInit() {
@@ -37,10 +40,20 @@ export class AppComponent implements OnInit {
     this.getSliderNews();
     this.getScrollNews();
     this.getAdvertisement();
-    this.getVideoNews();
-    
+    this.getVideoNews();   
+    this.GetCurrentdate()
   }
 
+
+  GetCurrentdate(){
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    this.Today =  month  + "/" + day + "/" + year;
+  }
+
+  
   getVideoNews() {
     this.homeService.GetVideoNews().subscribe(
       (result: any) => {

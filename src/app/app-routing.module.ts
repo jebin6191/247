@@ -28,10 +28,10 @@ const routes: Routes = [
         path: 'news-subcategory',
         loadChildren: './news-subcategory/news-subcategory.module#NewsSubcategoryModule'
       },
-      // {
-      //   path: 'news-article',
-      //   loadChildren: './pages/news-article/news-article.module#NewsArticleModule'
-      // },
+      {
+        path: 'news-article',
+        loadChildren: './news-article/news-article.module#NewsArticleModule'
+      },
       {
         path: 'news-video',
         loadChildren: './news-video/news-video.module#NewsVideoModule'

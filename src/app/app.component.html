@@ -1,38 +1,18 @@
 
 <div class="body-inner">
-    <div class="trending-bar d-md-block d-lg-block d-none">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="trending-title">Trending Now</h3>
-            <div id="trending-slide" class="owl-carousel owl-theme trending-slide">
-              <div *ngFor="let slidernews of homeService.sliderNewsList" class="item">
-                 <div class="post-content">
-                    <h2 class="post-title title-small">
-                       <a href="">{{slidernews.HeadLine}}</a>
-                    </h2>
-                 </div><!-- Post content end -->
-              </div><!-- Item 1 end -->
-             
-            </div><!-- Carousel end -->
-          </div><!-- Col end -->
-        </div><!--/ Row end -->
-      </div><!--/ Container end -->
-    </div><!--/ Trending end -->
-  
-    <div id="top-bar" class="top-bar">
+    <div style="background-color:#333"  id="top-bar" class="top-bar">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
             <div class="ts-date">
-              <i class="fa fa-calendar-check-o"></i>May 29, 2017
+              <i class="fa fa-calendar-check-o"></i>{{Today | date}}
             </div>
-            <ul class="unstyled top-nav">
+            <!-- <ul class="unstyled top-nav">
               <li><a href="#">About</a></li>
               <li><a href="#">Write for Us</a></li>
               <li><a href="#">Advertise</a></li>
               <li><a href="#">Contact</a></li>
-            </ul>
+            </ul> -->
           </div><!--/ Top bar left end -->
   
           <div class="col-md-4 top-social text-lg-right text-md-center">
@@ -206,62 +186,24 @@
             <h3 class="widget-title">Trending Now</h3>
             <div class="list-post-block">
               <ul class="list-post">
-                <li class="clearfix">
+                <li class="clearfix" *ngFor="let slidernews of homeService.sliderNewsList | slice:0:3">
                   <div class="post-block-style post-float clearfix">
                     <div class="post-thumb">
-                      <a href="#">
-                        <img class="img-fluid" src="assets/vendor/images/news/lifestyle/health2.jpg" alt="" />
+                      <a href="/news-description?newsId={{slidernews.newsId}}">
+                        <img class="img-fluid" [src]="slidernews.UpdatedSrc" alt="" />
                       </a>
                     </div><!-- Post thumb end -->
   
                     <div class="post-content">
                        <h2 class="post-title title-small">
-                         <a href="#">Can't shed those Gym? The problem might...</a>
+                         <a href="/news-description?newsId={{slidernews.newsId}}">{{slidernews.NewsHeadLine| slice:0:70}}..</a>
                        </h2>
                        <div class="post-meta">
-                         <span class="post-date">Mar 13, 2017</span>
+                         <!-- <span class="post-date">Mar 13, 2017</span> -->
                        </div>
                      </div><!-- Post content end -->
                   </div><!-- Post block style end -->
                 </li><!-- Li 1 end -->
-  
-                <li class="clearfix">
-                  <div class="post-block-style post-float clearfix">
-                    <div class="post-thumb">
-                      <a href="#">
-                        <img class="img-fluid" src="assets/vendor/images/news/lifestyle/health3.jpg" alt="" />
-                      </a>
-                    </div><!-- Post thumb end -->
-  
-                    <div class="post-content">
-                       <h2 class="post-title title-small">
-                         <a href="#">Deleting fears from the brain means you…</a>
-                       </h2>
-                       <div class="post-meta">
-                         <span class="post-date">Jan 11, 2017</span>
-                       </div>
-                     </div><!-- Post content end -->
-                  </div><!-- Post block style end -->
-                </li><!-- Li 2 end -->
-  
-                <li class="clearfix">
-                  <div class="post-block-style post-float clearfix">
-                    <div class="post-thumb">
-                      <a href="#">
-                        <img class="img-fluid" src="assets/vendor/images/news/lifestyle/health4.jpg" alt="" />
-                      </a>
-                    </div><!-- Post thumb end -->
-  
-                    <div class="post-content">
-                       <h2 class="post-title title-small">
-                         <a href="#">Smart packs parking sensor tech...</a>
-                       </h2>
-                       <div class="post-meta">
-                         <span class="post-date">Feb 19, 2017</span>
-                       </div>
-                     </div><!-- Post content end -->
-                  </div><!-- Post block style end -->
-                </li><!-- Li 3 end -->
               </ul><!-- List post end -->
             </div><!-- List post block end -->
             
@@ -270,53 +212,68 @@
           <div class="col-lg-3 col-sm-12 footer-widget widget-categories">
             <h3 class="widget-title">Hot Categories</h3>
             <ul>
-              <li>
-                <a href="#"><span class="catTitle">Robotics</span><span class="catCounter"> (5)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Games</span><span class="catCounter"> (6)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Gadgets</span><span class="catCounter"> (5)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Travel</span><span class="catCounter"> (5)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Health</span><span class="catCounter"> (5)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Architecture</span><span class="catCounter"> (5)</span></a>
-              </li>
-              <li>
-                <a href="#"><span class="catTitle">Food</span><span class="catCounter"> (5)</span></a>
+              <li *ngFor="let category of categoryList">
+                <a  href="/news-category?categoryId={{category.CategoryId}}" >
+                  <span style="cursor: pointer;" class="post-title">{{category.CategoryName }}</span></a>
               </li>
             </ul>
-            
           </div><!-- Col end -->
   
-          <div class="col-lg-3 col-sm-12 footer-widget twitter-widget">
-            <h3 class="widget-title">Latest Tweets</h3>
+          <div class="col-lg-3 col-sm-12 footer-widget">
+            <h3 class="widget-title">Company</h3>
             <ul>
               <li>
-                <div class="tweet-text">
-                <span>About 13 days ago</span>
-                Please, Wait for the next version of our templates to update #Joomla 3.7 
-                <a href="#">https://t.co/LlEv8HgokN</a>
+                <div class="post-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  About Us
+                 </div>
+                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="wheat">
+                      One Bharath News brings you a daily connect with India's leading news,
+                      columns, coverage and many more. One Bharath News also provides the readers
+                      and viewers a digital experience with refreshed and accurate "Infotaiment" across the
+                      Nation.
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="post-title" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Contact Us
+                 </div>
+                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="wheat">
+                          2nd floor, B block, Romar House<br/>
+                          Jaganathan Road, Nungambakkam,<br/>
+                          Chennai-34.<br/>
+                          Email - info@onebharathnews.in <br/>
+                          Land-line - 044 42144309 
+                  </div>
                 </div>
               </li>
               <li>
-                <div class="tweet-text">
-                <span>About 15 days ago</span>
-                #WordPress 4.8 is here!
-                <a href="#">https://t.co/uDjRH4Gya9</a>
+                <div class="post-title" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Careers
                 </div>
-              </li>
-              <li>
-                <div class="tweet-text">
-                <span>About 1 month ago</span>
-                Please, Wait for the next version of our templates to update #Joomla 3.7 
-                <a href="#">https://t.co/LlEv8HgokN</a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div>
+                      <form [formGroup]="form" (ngSubmit)="onSubmit()">       
+                      <div class="form-group">
+                          <label class="wheat" for="Name">Name:</label>
+                          <input class="form-control" id="Name" formControlName="Name" name="Name" />
+                      </div>
+                      <div class="form-group">
+                          <label class="wheat" for="description">Description:</label>
+                          <textarea class="form-control" rows="5" id="description" formControlName="description" name="description"></textarea>
+                      </div>
+                      <div class="form-group" style="overflow: hidden">
+                          <label class="btn btn-primary" for="my-file-selector">
+                              <input type="file" name="uploadedfile" (change)="onFileChange($event)" />
+                          </label>
+                      </div>
+                      <button class="btn btn-success" type="submit">Upload</button>
+                      <div style="margin: 20px"></div>
+                      </form>                                     
+                  </div>
                 </div>
               </li>
             </ul>
@@ -349,36 +306,22 @@
               <div class="footer-logo">
                 <img class="img-fluid" src="assets/vendor/images/logos/footer-logo.png" alt="" />
               </div>
-              <p>News247 Worldwide is a popular online newsportal and going source for technical and digital content for its influential audience around the globe. You can reach us via email or phone.</p>
-              <p class="footer-info-phone"><i class="fa fa-phone"></i> +(785) 238-4131</p>
-              <p class="footer-info-email"><i class="fa fa-envelope-o"></i> editor@news247.com</p>
+              <p>One Bharath News brings you a daily connect with India's leading news, columns, coverage and many more. One Bharath News also provides the readers and viewers a digital experience with refreshed and accurate "Infotaiment" across the Nation.</p>
+              <p class="footer-info-phone"><i class="fa fa-phone"></i> 044 42144309</p>
+              <p class="footer-info-email"><i class="fa fa-envelope-o"></i> info@onebharathnews.in</p>
               <ul class="unstyled footer-social">
                 <li>
-                  <a title="Rss" href="#">
-                    <span class="social-icon"><i class="fa fa-rss"></i></span>
-                  </a>
-                  <a title="Facebook" href="#">
+                 
+                  <a title="Facebook" href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
                     <span class="social-icon"><i class="fa fa-facebook"></i></span>
                   </a>
-                  <a title="Twitter" href="#">
+                  <a title="Twitter"  href="https://twitter.com/onebharathnews" target="_blank">
                     <span class="social-icon"><i class="fa fa-twitter"></i></span>
                   </a>
-                  <a title="Google+" href="#">
-                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                  <a title="YouTube" href="https://www.youtube.com/channel/UCHKaqrWBHvBdS7dgpjpz5lg" target="_blank">
+                    <span class="social-icon"><i class="fa fa-youtube"></i></span>
                   </a>
-                  <a title="Linkdin" href="#">
-                    <span class="social-icon"><i class="fa fa-linkedin"></i></span>
-                  </a>
-                  <a title="Skype" href="#">
-                    <span class="social-icon"><i class="fa fa-skype"></i></span>
-                  </a>
-                  <a title="Skype" href="#">
-                    <span class="social-icon"><i class="fa fa-dribbble"></i></span>
-                  </a>
-                  <a title="Skype" href="#">
-                    <span class="social-icon"><i class="fa fa-pinterest"></i></span>
-                  </a>
-                  <a title="Skype" href="#">
+                  <a title="Instagram" href="https://www.instagram.com/onebharath_news/" target="_blank">
                     <span class="social-icon"><i class="fa fa-instagram"></i></span>
                   </a>
                 </li>
@@ -390,7 +333,6 @@
     </div><!-- Footer info end -->
   
   </footer><!-- Footer end -->
-  
   <div class="copyright">
       <div class="container">
         <div class="row">

@@ -4,7 +4,7 @@ import { WINDOW } from '@ng-toolkit/universal';
 import { NavigationEnd, Router } from '@angular/router';
 import { environment } from '../shared/env';
 import { DomSanitizer } from '@angular/platform-browser';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 @Component({
   selector: 'app-home',

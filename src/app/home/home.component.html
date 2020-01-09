@@ -131,6 +131,14 @@
 									</span>
 							  	</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link animated fadeIn" href="/news-category?categoryId={{category.CategoryId}}" >
+									<span class="tab-head">
+									  <span class="tab-text-title">View All</span>					
+								  </span>
+								</a>
+							</li>
+
 						</ul>
 
 						<div class="tab-content">
@@ -361,114 +369,40 @@
 					<div class="sidebar sidebar-right">
 
 						<div class="widget color-default">
-							<h3 class="block-title"><span>Latest Reviews</span></h3>
+							<h3 class="block-title"><span>Popular News</span></h3>
 							<div class="list-post-block">
 								<ul class="list-post review-post-list">
-									<li class="clearfix">
+									<li *ngFor="let slidernews of homeService.sliderNewsList" class="clearfix">
 										<div class="post-block-style post-float clearfix">
 											<div class="post-thumb">
-												<a href="#">
-													<img class="img-fluid" src="assets/vendor/images/news/review/review1.jpg" alt="" />
+												<a href="/news-description?newsId={{slidernews.newsId}}">
+													<img class="img-fluid" [src]="slidernews.UpdatedSrc"  alt="" />
 												</a>
 											</div><!-- Post thumb end -->
 
 											<div class="post-content">
 									 			<h2 class="post-title">
-									 				<a href="#">Topical Resorts you need to know</a>
+									 				<a href="/news-description?newsId={{slidernews.newsId}}">{{slidernews.NewsHeadLine | slice:0:50}}..</a>
 									 			</h2>
-									 			<div class="post-meta">
-									 				<div class="review-stars">
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star-half-o"></i>
-									 					<i class="fa fa-star-o"></i>
-									 				</div>
-									 			</div><!-- Post meta end -->
+
 								 			</div><!-- Post content end -->
 										</div><!-- Post block style end -->
 									</li><!-- Li 1 end -->
-
-									<li class="clearfix">
-										<div class="post-block-style post-float clearfix">
-											<div class="post-thumb">
-												<a href="#">
-													<img class="img-fluid" src="assets/vendor/images/news/review/review2.jpg" alt="" />
-												</a>
-											</div><!-- Post thumb end -->
-
-											<div class="post-content">
-									 			<h2 class="post-title">
-									 				<a href="#">Apple - MacBook Pro with Retina display</a>
-									 			</h2>
-									 			<div class="post-meta">
-									 				<div class="review-stars">
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star-half-o"></i>
-									 				</div>
-									 			</div>
-								 			</div><!-- Post content end -->
-										</div><!-- Post block style end -->
-									</li><!-- Li 2 end -->
-
-									<li class="clearfix">
-										<div class="post-block-style post-float clearfix">
-											<div class="post-thumb">
-												<a href="#">
-													<img class="img-fluid" src="assets/vendor/images/news/review/review3.jpg" alt="" />
-												</a>
-											</div><!-- Post thumb end -->
-
-											<div class="post-content">
-									 			<h2 class="post-title">
-									 				<a href="#">Asus ZenPad 3S 10 Z500M</a>
-									 			</h2>
-									 			<div class="post-meta">
-									 				<div class="review-stars">
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star-o"></i>
-									 					<i class="fa fa-star-o"></i>
-									 				</div>
-									 			</div>
-								 			</div><!-- Post content end -->
-										</div><!-- Post block style end -->
-									</li><!-- Li 3 end -->
-
-									<li class="clearfix">
-										<div class="post-block-style post-float clearfix">
-											<div class="post-thumb">
-												<a href="#">
-													<img class="img-fluid" src="assets/vendor/images/news/review/review4.jpg" alt="" />
-												</a>
-											</div><!-- Post thumb end -->
-
-											<div class="post-content">
-									 			<h2 class="post-title">
-									 				<a href="#">Polar M600 GPS Smart Sports Watch</a>
-									 			</h2>
-									 			<div class="post-meta">
-									 				<div class="review-stars">
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star"></i>
-									 					<i class="fa fa-star-half-o"></i>
-									 					<i class="fa fa-star-o"></i>
-									 					<i class="fa fa-star-o"></i>
-									 				</div>
-									 			</div>
-								 			</div><!-- Post content end -->
-										</div><!-- Post block style end -->
-									</li><!-- Li 4 end -->
 								</ul><!-- List post end -->
 							</div><!-- List post block end -->
 						</div><!-- Latest Review Widget end -->
 
 						<div class="widget m-bottom-0">
-							<h3 class="block-title"><span>Newsletter</span></h3>
+
+							<div class="widget text-center">
+								<div *ngFor="let add of homeService.advertisementList">
+									<a *ngIf="add.Name == 'two'" href="{{add.Link}}" target="_blank"style="cursor: pointer;">
+										<img src="{{imageUrlPath + 'common/' + add.ImagePath}}" alt="IMG" style="max-height:650px;max-width: 300px;"/>
+									</a>
+								</div>
+							</div>	
+
+							<!-- <h3 class="block-title"><span>Newsletter</span></h3>
 							<div class="ts-newsletter">
 								<div class="newsletter-introtext">
 									<h4>Get Updates</h4>
@@ -483,8 +417,8 @@
 										</div>
 									</form>
 								</div>
-							</div><!-- Newsletter end -->
-						</div><!-- Newsletter widget end -->
+							</div> -->
+						</div>
 					</div><!--Sidebar right end -->
 				</div><!-- Sidebar col end -->
 			</div><!-- Row end -->
