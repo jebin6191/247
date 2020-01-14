@@ -21,6 +21,17 @@ export class NewsVideoComponent implements OnInit {
   ngOnInit() {
     this.window.scrollTo(0,0);
     this.PaginationConfig();
+     
+  }
+
+
+  openModal(modal, id){
+    this.iframeVideo = 'https://www.youtube.com/embed/' + id;
+    modal.style.display = "block";
+  }
+
+  closeModal(modal){
+      modal.style.display = "none";
   }
 
 
@@ -28,8 +39,8 @@ export class NewsVideoComponent implements OnInit {
     debugger
     console.log(link)
     this.iframeVideoIndex = index
-       this.iframeVideo = link;
-      document.getElementById("iframeVideo").innerHTML = '<iframe src="'+link.toString().trim()+'" width="420" height="345"></iframe>'
+       this.iframeVideo = link.toString().trim();
+      // document.getElementById("iframeVideo").innerHTML = '<iframe src="'+link.toString().trim()+'" width="420" height="345"></iframe>'
   }
 
   videopopup(){
