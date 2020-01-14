@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
     this.homeService.GetNationalNews().subscribe((result: any) => {
         if (result) {
           this.NationalNewsList = result;
-          console.log(JSON.stringify(this.NationalNewsList));
+          // console.log(JSON.stringify(this.NationalNewsList));
         }
       });
     }

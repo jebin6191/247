@@ -29,7 +29,9 @@ export class AppComponent implements OnInit {
   events: string[] = [];
   selected: any = '';
   searchString ="";
-  Today;any;
+  Today:any;
+  GalleryArr:any =[];
+  Gallery:any =[];
   
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private router: Router, private formBuilder: FormBuilder) {
 
@@ -41,7 +43,8 @@ export class AppComponent implements OnInit {
     this.getScrollNews();
     this.getAdvertisement();
     this.getVideoNews();   
-    this.GetCurrentdate()
+    this.GetCurrentdate();
+
   }
 
 
@@ -75,8 +78,11 @@ export class AppComponent implements OnInit {
   }
 
   Allcategory() {
+    this.Gallery = [];
     this.homeService.Allcategory().subscribe(
+
       (result: any) => {
+        this.GalleryArr = [];
         if (result) {
           debugger;
           this.categoryList = result;
@@ -93,16 +99,27 @@ export class AppComponent implements OnInit {
                     news.NewsContent = this.html2text(news.DetailedNews);
                     news.SubCategoryName = n.SubCategoryName;
                     this.Temparr.push(news)
+                    this.GalleryArr.push(news)
                   }
                 }
-              c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
+              c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));
+             
           }
           this.homeService.categoryList = this.categoryList;
+          for(let i=0; i < 9; i++){
+            this.Gallery.push(this.pickRandomQuestion());
+          }
         }
       });
   }
 
-  
+   pickRandomQuestion(){
+    var obj_keys = Object.keys(this.GalleryArr);
+    var ran_key = obj_keys[Math.floor(Math.random() *obj_keys.length)];
+    return this.GalleryArr[ran_key]
+  }
+
+
   html2text(html) {        
     let d = document.createElement("div");
     d.innerHTML = html;
@@ -123,6 +140,17 @@ export class AppComponent implements OnInit {
 
   MoveTop(){
     this.window.scrollTo(0,420);
+  }
+
+  NavigateToSearch(event){
+    if(event){
+      document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+      if(this.searchString == null || this.searchString == ""){
+        alert("SearchText can't be empty");
+        return false;
+    }
+    }
+    this.router.navigate(['/search-results'], { queryParams: { SearchTerm: this.searchString , StartDate: "", EndDate:""} } )
   }
 
   getSliderNews() {

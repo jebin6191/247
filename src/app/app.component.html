@@ -164,7 +164,7 @@
           </div><!-- Search end -->
           
           <div class="search-block" style="display: none;">
-            <input type="text" class="form-control" placeholder="Type what you want and enter">
+            <input type="text" class="form-control" [(ngModel)]="searchString" (keyup.enter)="NavigateToSearch($event)" placeholder="Type what you want and enter">
             <span class="search-close">&times;</span>
           </div><!-- Site search end -->
   
@@ -278,22 +278,15 @@
               </li>
             </ul>
           </div><!-- Col end -->
-  
+
           <div class="col-lg-3 col-sm-12 footer-widget">
             <h3 class="widget-title">Post Gallery</h3>
             <div class="gallery-widget">
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/health1.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/food3.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel4.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/architecture1.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/tech/gadget1.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/tech/gadget2.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/tech/game2.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/tech/robot5.jpg" alt="" /></a>
-              <a href="#"><img class="img-fluid" src="assets/vendor/images/news/lifestyle/travel5.jpg" alt="" /></a>
+              <a style="cursor: pointer;" *ngFor="let gallery of Gallery" href="/news-description?newsId={{gallery.newsId}}">
+                <img class="img-fluid" src="https://admin.onebharathnews.tv/CategoryFiles/{{gallery.Newsthump}}" title="{{gallery.NewsHeadLine}}" alt="" />
+              </a>
             </div>
           </div><!-- Col end -->
-  
         </div><!-- Row end -->
       </div><!-- Container end -->
     </div><!-- Footer main end -->

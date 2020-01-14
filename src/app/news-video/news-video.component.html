@@ -1,5 +1,17 @@
 
-
+<style>
+  .VideoIframe{
+    align-self: center;
+    height: 50vh;
+    width: 45%;
+    margin: 24vh;
+  }
+</style>
+  <div class="modal fade" id="myModal" role="dialog" style="z-index: 1000000;text-align: center;">
+    <div >
+      <iframe class="VideoIframe" [src]="iframeVideo | SafeurlPipe" style="align-self: center;"></iframe>
+    </div>
+  </div>
 
 <section class="block-wrapper">
   <div class="container">
@@ -9,21 +21,36 @@
         <div class="block category-listing color-violet">
           <h3 class="block-title"><span> ALL VIDEOS</span></h3>
 
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3"  *ngFor="let videoNews of homeService.videoNews | paginate: config ; let i = index" >
+          
+                <div class="video_thumbnail">
+                  <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="" class="img-responsive">
+                  <span class="play-btn"></span>
+                </div>
+          
+              </div>
+          
+            </div>
+          </div>
+          
+
           <div class="row">
 
-            <div class="col-md-3" *ngFor="let videoNews of homeService.videoNews | paginate: config ; let i = index" >
-              <div class="post-block-style clearfix">
+            <div class="col-md-3">
+              <div class="">
                 <div class="post-thumb">
                   <a >
                     <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
                   </a>
                 </div>
                 <!-- <a class="post-cat" >{{subCategoryList[0].SubCategoryName}}</a> -->
-                <div class="post-content">
-                   <h2 class="post-title title-large">
-                     <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal" data-target="#modal-video-01" >
+                <div class="video_thumbnail">
+                   <h2 >
+                    <button type="button" class="btn btn-info btn-lg img-responsive" data-toggle="modal" (click)="ifraVideo(i,videoNews.Link)" data-target="#myModal">
                       <span class="fab fa-youtube"></span>
-                     </button >
+                    </button>
                    </h2>
                    <div class="post-meta">
                      <span class="post-author"></span>

@@ -10,3 +10,10 @@
     -moz-transition: all 2s;
     transition: all 2s;
 }
+
+.wrap-video-mo-01 {
+    width: 854px;
+    height: auto;
+    position: relative;
+    margin: 15px;
+}
