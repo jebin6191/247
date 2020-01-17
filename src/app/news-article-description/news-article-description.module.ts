@@ -8,13 +8,14 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
-  declarations: [NewsArticleDescriptionComponent, SafePipe],
+  declarations: [NewsArticleDescriptionComponent],
   imports: [
     CommonModule,
     NewsArticleDescriptionRoutingModule,
     HttpModule,
     ShareButtonsModule,
-    CarouselModule
+    CarouselModule,
+    SafePipe
   ]
 })
 export class NewsArticleDescriptionModule { }

@@ -11,11 +11,13 @@ import { HomeService } from './shared/home.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SafePipe } from './shared/safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -27,8 +29,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormsModule,
     ReactiveFormsModule,  
     BrowserAnimationsModule,
-    CarouselModule 
+    CarouselModule
   ],
+  exports:[SafePipe],
   providers: [HomeService],
   bootstrap: [AppComponent]
 })

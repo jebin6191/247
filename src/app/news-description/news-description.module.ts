@@ -11,14 +11,14 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
-  declarations: [NewsDescriptionComponent,
-    SafePipe],
+  declarations: [NewsDescriptionComponent],
   imports: [
     CommonModule,
     NewsDescriptionRoutingModule,
     HttpModule,
     ShareButtonsModule,
-    CarouselModule
+    CarouselModule,
+    SafePipe
   ]
 })
 export class NewsDescriptionModule { }

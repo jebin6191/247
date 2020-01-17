@@ -4,8 +4,6 @@ import { HomeService } from './shared/home.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { environment } from './shared/env';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -44,6 +42,11 @@ export class AppComponent implements OnInit {
     this.getAdvertisement();
     this.getVideoNews();   
     this.GetCurrentdate();
+    this.form = this.formBuilder.group({
+      Name: ['', Validators.required],
+      uploadedfile: ['', Validators.required],
+      description: ['']
+    });
 
   }
 

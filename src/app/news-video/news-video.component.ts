@@ -20,8 +20,8 @@ export class NewsVideoComponent implements OnInit {
 
   ngOnInit() {
     this.window.scrollTo(0,0);
-    this.PaginationConfig();
-     
+    this.PaginationConfig(); 
+    console.log(JSON.stringify(this.homeService.videoNews)) 
   }
 
 
@@ -44,7 +44,7 @@ export class NewsVideoComponent implements OnInit {
   }
 
   videopopup(){
-    document.getElementById("iframeVideo").innerHTML = "";
+    this.iframeVideo = "";
   }
 
   PaginationConfig(){
