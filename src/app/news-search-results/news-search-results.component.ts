@@ -58,6 +58,7 @@ export class NewsSearchResultsComponent implements OnInit {
           }
           console.log("result"+JSON.stringify(result))
           this.NewsListBySearchTerm = result; 
+          console.log(JSON.stringify(this.NewsListBySearchTerm))
           this.PaginationConfig();
         }
       });
@@ -98,7 +99,7 @@ export class NewsSearchResultsComponent implements OnInit {
 
   pageChanged(event){
     this.config.currentPage = event;
-    this.window.scrollTo(0,420);
+    this.window.scrollTo(0,350);
   }
 
 }

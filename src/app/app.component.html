@@ -3,6 +3,9 @@
     width: 80px;
     height: 65px;
 }
+.cursorpointer{
+  cursor: pointer;
+}
 </style>
 <div class="body-inner">
     <div style="background-color:#333"  id="top-bar" class="top-bar">
@@ -80,20 +83,20 @@
                 <ul class="nav navbar-nav">
 
 
-                  <li class="active" >
-                    <a href="/home">Home</a>
+                  <li [ngClass] = "{'active': actvalue == '0ct'}" (click)="MoveTop('0ct')">
+                    <a [routerLink]="['/home']">Home</a>
                   </li>
   
-                  <li>
-                    <a href="/news-category?categoryId=national" >National</a>
+                  <li [ngClass] = "{'active': actvalue == '01ct'}" (click)="MoveTop('01ct')">
+                    <a  [routerLink]="['/news-category']" [queryParams]="{categoryId: 'national'}" >National</a>
                   </li>
+                  <!-- [ngClass]="{category.CategoryId == actvalue ? 'active' : '' }" -->
   
-  
-                  <li *ngFor="let category of categoryList;" class="nav-item dropdown mega-dropdown">
-                    <a (click)="MoveTop()" [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle"
+                  <li *ngFor="let category of categoryList;" class="nav-item dropdown mega-dropdown" [ngClass] = "{'active': category.CategoryId == actvalue}" >
+                    <a (click)="MoveTop(category.CategoryId)" [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle"
                      data-toggle="dropdown"
                     role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
-                    <div  class="dropdown-menu mega-menu-content clearfix">
+                    <div id="megamenu" class="dropdown-menu mega-menu-content clearfix">
                       <div class="menu-tab">
                         <div class="row">
                           <ul class="nav nav-tabs flex-column col-2" data-toggle="tab-hover">
@@ -151,16 +154,13 @@
                                 </div>
                               </div>
                             </div><!-- Tab pane 1 end -->
-
-
                           </div>  <!-- Tab pane 2 end -->
                         </div>
                       </div><!-- Menu tab end -->
                     </div><!-- Mega menu end -->
                   </li><!-- Tab menu end -->
                 </ul><!--/ Nav ul end -->
-              </div><!--/ Collapse end -->
-  
+              </div><!--/ Collapse end --> 
             </div><!-- Site Navbar inner end -->
           </nav><!--/ Navigation end -->
   
@@ -225,11 +225,11 @@
           </div><!-- Col end -->
   
           <div class="col-lg-3 col-sm-12 footer-widget">
-            <h3 class="widget-title">Company</h3>
+            <h3 class="widget-title" >Company</h3>
             <ul>
               <li>
                 <div class="post-title" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  About Us
+                   <span class="cursorpointer">About Us </span>
                  </div>
                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                   <div class="wheat">
@@ -243,7 +243,7 @@
 
               <li>
                 <div class="post-title" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Contact Us
+                  <span class="cursorpointer"> Contact Us</span>
                  </div>
                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                   <div class="wheat">
@@ -257,7 +257,7 @@
               </li>
               <li>
                 <div class="post-title" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Careers
+                  <span class="cursorpointer">Careers </span>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                   <div>

@@ -30,6 +30,8 @@ export class AppComponent implements OnInit {
   Today:any;
   GalleryArr:any =[];
   Gallery:any =[];
+
+  actvalue:any = "0ct";
   
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private router: Router, private formBuilder: FormBuilder) {
 
@@ -141,13 +143,15 @@ export class AppComponent implements OnInit {
       });
   }
 
-  MoveTop(){
+  MoveTop(value){
+    document.getElementById("megamenu").classList.remove("show");
+    this.actvalue = value;
     this.window.scrollTo(0,420);
   }
 
   NavigateToSearch(event){
     if(event){
-      document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+      // document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
       if(this.searchString == null || this.searchString == ""){
         alert("SearchText can't be empty");
         return false;

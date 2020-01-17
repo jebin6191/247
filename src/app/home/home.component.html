@@ -147,17 +147,17 @@
 						      	<div class="col-lg-6 col-md-6">
 						      		<div class="post-block-style clearfix">
 											<div class="post-thumb">
-												<a href="#">
+												<a href="/news-description?newsId={{category.AllNews[0].newsId}}">
 													<img class="img-fluid" src="https://admin.onebharathnews.tv/CategoryFiles/{{category.AllNews[0].Newsthump}}" alt="" />
 												</a>
 											</div>
-											<a class="post-cat" href="#">{{category.AllNews[0].SubCategoryName}}</a>
+											<a class="post-cat"  href="/news-description?newsId={{category.AllNews[0].newsId}}">{{category.AllNews[0].SubCategoryName}}</a>
 											<div class="post-content">
 									 			<h2 class="post-title">
 									 				<a  href="/news-description?newsId={{category.AllNews[0].newsId}}"> {{category.AllNews[0].NewsHeadLine}}</a>
 									 			</h2>
 									 			<div class="post-meta">
-									 				<span class="post-author"><a href="#">{{category.AllNews[0].CreatedName}}</a></span>
+									 				<span class="post-author"><a  href="/news-description?newsId={{category.AllNews[0].newsId}}">{{category.AllNews[0].CreatedName}}</a></span>
 									 				<span class="post-date">{{category.AllNews[0].Date | date: 'dd/MM/yyyy'}}</span>
 												 </div>
 												 <p >{{category.AllNews[0].NewsContent | slice:0:200}} ...</p >
@@ -175,7 +175,7 @@
 															<img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.Newsthump}}" alt="" />
 														</a>
 													</div><!-- Post thumb end -->
-													<a class="post-cat" href="#">{{subcategory.SubCategoryName}}</a>
+													<a class="post-cat" href="/news-description?newsId={{subcategory.newsId}}">{{subcategory.SubCategoryName}}</a>
 													<div class="post-content">
 														<h2 class="post-title title-small">
 															<a  href="/news-description?newsId={{subcategory.newsId}}">{{subcategory.NewsHeadLine}}</a>
@@ -201,7 +201,7 @@
 												  <img class="img-fluid"  src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.News[0].Newsthump}}" alt="" />
 											  </a>
 										  </div>
-										  <a class="post-cat" href="#">{{subcategory.News[0].SubCategoryName}}</a>
+										  <a class="post-cat" href="/news-description?newsId={{subcategory.News[0].newsId}}">{{subcategory.News[0].SubCategoryName}}</a>
 										  <div class="post-content">
 											   <h2 class="post-title">
 												   <a  href="/news-description?newsId={{subcategory.News[0].newsId}}"> {{subcategory.News[0].NewsHeadLine}}</a>
@@ -224,7 +224,7 @@
 															  <img class="img-fluid" style="height: 75px;" src="https://admin.onebharathnews.tv/CategoryFiles/{{news.Newsthump}}" alt="" />
 														  </a>
 													  </div><!-- Post thumb end -->
-													  <a class="post-cat" href="#">{{news.SubCategoryName}}</a>
+													  <a class="post-cat"  href="/news-description?newsId={{news.newsId}}">{{news.SubCategoryName}}</a>
 													  <div class="post-content">
 														   <h2 class="post-title title-small">
 															   <a   href="/news-description?newsId={{news.newsId}}">{{news.NewsHeadLine}}</a>

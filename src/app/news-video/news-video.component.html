@@ -1,20 +1,69 @@
 <style>
-  .VideoIframe{
+  .VideoIframe {
     align-self: center;
     height: 50vh;
     width: 45%;
-    margin: 20%;
+    margin-top: 10%;
   }
-</style> 
+
+  .post-meta span {
+    font-size: 13px;
+    color: #fffcfc;
+    margin-right: 8px;
+    padding-right: 10px;
+    border-right: 1px solid #dedede;
+    line-height: 20px;
+    display: inline-block;
+  }
+
+  .post-meta {
+    background: #000;
+    padding: 0 10px 10px;
+    height: 52px;
+    cursor: pointer;
+  }
+
+  .popupBtn:hover {
+    color: RED;
+  }
+
+  .popupBtn {
+    color: #fff;
+    left: 0;
+    top: 0;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    outline: 0;
+    border: none;
+    background: 0 0;
+    cursor: pointer;
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 100%;
+      margin: 1.75rem auto;
+    }
+  }
+  
+  .IconRight{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }
+</style>
 
 
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!-- <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
     <div class="modal-content">
     
       <div class="modal-header">
@@ -27,16 +76,24 @@
         <button type="button" class="btn btn-default" (click)="videopopup()" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div> -->
 
+<div style="overflow-y: hidden;" class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" style="height: 100vh;margin: 0;">
+
+    <div class="modal-content" style="background: transparent;border: none;">
+      <div class="IconRight">
+        <button type="button" class="close" data-dismiss="modal" (click)="videopopup()"> <i style="font-size:36px; color: white;" class="fa fa-close"></i></button>
+      </div>
+     
+      <iframe id="iframeVideo" class="VideoIframe" [src]="iframeVideo | SafeurlPipe"
+        style="align-self: center;"></iframe>
+    </div>
   </div>
 </div>
 
-<!-- <div style="overflow-y: hidden;" class="modal fade" id="myModal" role="dialog">
-    <button type="button" class="close" data-dismiss="modal" (click)="videopopup()" >&times;</button>
-    <iframe id="iframeVideo" class="VideoIframe" [src]="iframeVideo | SafeurlPipe" style="align-self: center;"></iframe>
-</div> -->
-
-  <!-- <div class="modal fade" id="myModal" role="dialog" style="text-align: center;">
+<!-- <div class="modal fade" id="myModal" role="dialog" style="text-align: center;">
       <div class="close-mo-video-01 trans-0-4" (click)="videopopup()" data-dismiss="modal" aria-label="Close">&times;</div>
       <div class="modal-body">
         <iframe class="VideoIframe" [src]="iframeVideo | SafeurlPipe" style="align-self: center;"></iframe>
@@ -51,30 +108,30 @@
           <h3 class="block-title"><span> ALL VIDEOS</span></h3>
           <div class="container">
             <div class="row">
-              <div style="margin-bottom: 10px;" class="col-sm-3"  *ngFor="let videoNews of homeService.videoNews | paginate: config ; let i = index" >         
+              <div style="margin-bottom: 10px;padding: 5px;" class="col-sm-3"
+                *ngFor="let videoNews of homeService.videoNews | paginate: config ; let i = index">
                 <div>
-                  <img  class="video" data-toggle="modal" (click)="ifraVideo(i,videoNews.Link)" data-target="#myModal" src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt=""  style="height:200px">
+                  <img class="video" data-toggle="modal" (click)="ifraVideo(i,videoNews.Link)" data-target="#myModal"
+                    src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt=""
+                    style="height:200px;width: 100%;">
                   <span class="play-btn"></span>
-                 
-                </div>  
+                  <button class="popupBtn" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                  data-target="#myModal">
+                    <span class="fa fa-youtube-play" style="font-size: 40px;"></span>
+                  </button>
+                </div>
                 <div class="post-meta">
-                  <a  (click)="ifraVideo(i,videoNews.Link)"  class="btn btn-md" data-toggle="modal" data-target="#myModal"><span >{{videoNews.title}}</span></a>
+                  <a (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                    data-target="#myModal"><span>{{videoNews.title}}</span></a>
                   <!-- <span class="post-author"><a href="/news-description?newsId={{news.newsId}}"  (click)="GotToDesc(news)" >{{news.CreatedName}}</a></span> -->
-                 
-                </div>       
-              </div>          
+
+                </div>
+              </div>
             </div>
-          </div>        
+          </div>
         </div><!-- Block Lifestyle end -->
         <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
       </div><!-- Content Col end -->
     </div><!-- Row end -->
   </div><!-- Container end -->
 </section><!-- First block end -->
-
-
-
-
-
-
-

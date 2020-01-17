@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsArticleDescriptionComponent } from './news-article-description.component';
-import { SafePipe } from '../shared/safe.pipe';
 import { NewsArticleDescriptionRoutingModule } from './news-article-description-routing.module';
 import { HttpModule } from '@angular/http';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [NewsArticleDescriptionComponent],
@@ -15,7 +15,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HttpModule,
     ShareButtonsModule,
     CarouselModule,
-    SafePipe
+    SharedModule
   ]
 })
 export class NewsArticleDescriptionModule { }
