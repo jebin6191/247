@@ -189,4 +189,32 @@ export class AppComponent implements OnInit {
       });
   }
 
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file);
+      this.form.get('uploadedfile').setValue(file);
+    }
+  }
+
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.form.get('uploadedfile').value);
+    const body = {
+      "Body": this.form.get('description').value,
+      "Name": this.form.get('Name').value,
+    };
+    formData.append('data', JSON.stringify(body));
+    this.homeService.FileUploads(formData).subscribe(
+      (res) => {this.uploadResponse = res
+      console.log(this.uploadResponse);
+        if(this.uploadResponse == "Mail Sent"){
+          alert("Submitted Successfully");
+          this.form.reset();
+        }     
+      }
+    );
+  }
+
 }

@@ -53,4 +53,8 @@ export class NewsArticleComponent implements OnInit {
       d.innerHTML = html;
       return d.innerText.split("\n").join("").trim();
     }
+    pageChanged(event){
+      this.config.currentPage = event;
+      this.window.scrollTo(0,420);
+    }
 }
