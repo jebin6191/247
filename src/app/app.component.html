@@ -83,20 +83,19 @@
                 <ul class="nav navbar-nav">
 
 
-                  <li [ngClass] = "{'active': actvalue == '0ct'}" (click)="MoveTop('0ct')">
+                  <li [ngClass] = "{'active': actvalue == '0ct'}" (click)="MoveTop($event, '0ct')">
                     <a [routerLink]="['/home']">Home</a>
                   </li>
   
-                  <li [ngClass] = "{'active': actvalue == '01ct'}" (click)="MoveTop('01ct')">
+                  <li [ngClass] = "{'active': actvalue == '01ct'}" (click)="MoveTop($event, '01ct')">
                     <a  [routerLink]="['/news-category']" [queryParams]="{categoryId: 'national'}" >National</a>
                   </li>
-                  <!-- [ngClass]="{category.CategoryId == actvalue ? 'active' : '' }" -->
   
                   <li *ngFor="let category of categoryList;" class="nav-item dropdown mega-dropdown" [ngClass] = "{'active': category.CategoryId == actvalue}" >
-                    <a (click)="MoveTop(category.CategoryId)" [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"  class="nav-link dropdown-toggle"
-                     data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
-                    <div id="megamenu" class="dropdown-menu mega-menu-content clearfix">
+                    <a (click)="MoveTop($event, category.CategoryId)" [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}" 
+                     class="nav-link dropdown-toggle"
+                     data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{category.CategoryName}} <i class="fa fa-angle-down"></i></a>
+                    <div id="megamenu{{category.CategoryId}}" class="dropdown-menu mega-menu-content clearfix" >
                       <div class="menu-tab">
                         <div class="row">
                           <ul class="nav nav-tabs flex-column col-2" data-toggle="tab-hover">

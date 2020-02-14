@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ElementRef } from '@angular/core';
 import { WINDOW } from '@ng-toolkit/universal';
 import { HomeService } from './shared/home.service';
 import { Router } from '@angular/router';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from './shared/env';
 
 @Component({
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
 
   actvalue:any = "0ct";
   
-  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private router: Router, private formBuilder: FormBuilder) {
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private router: Router, private formBuilder: FormBuilder, private el: ElementRef) {
 
   }
 
@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
       uploadedfile: ['', Validators.required],
       description: ['']
     });
-
   }
 
 
@@ -143,10 +142,13 @@ export class AppComponent implements OnInit {
       });
   }
 
-  MoveTop(value){
-    document.getElementById("megamenu").classList.remove("show");
+  MoveTop(event, value){
+
     this.actvalue = value;
     this.window.scrollTo(0,420);
+    
+    console.log(event.target.parentNode.nextSibling);
+    document.getElementById("megamenu"+value).className = 'dropdown-menu mega-menu-content';
   }
 
   NavigateToSearch(event){
